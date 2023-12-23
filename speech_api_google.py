@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -23,9 +23,14 @@ import json
 import base64
 import io
 import speech_recognition as sr
-from googletrans import Translator
 from gtts import gTTS
 
+googletrans_ok = False
+try:
+    from googletrans import Translator
+    googletrans_ok = True
+except:
+    pass
 
 
 # google 音声認識、翻訳機能、音声合成
@@ -169,8 +174,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 
@@ -185,10 +190,13 @@ class SpeechAPI:
 
         return res_text, res_api
 
-    def translate(self, inpText=u'こんにちは', inpLang='ja', outLang='en', api='auto', ):
+    def translate(self, inpText='こんにちは', inpLang='ja', outLang='en', api='auto', ):
         res_text = ''
         res_api  = ''
-        if (self.tra_key is None):
+        if (googletrans_ok == False):
+            print('GOOGLE: googletrans not install !')
+
+        elif (self.tra_key is None):
             print('GOOGLE: Not Authenticate Error !')
 
         else:
@@ -250,8 +258,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -74,17 +74,17 @@ if __name__ == '__main__':
         #tenkiAPI = weather_api.WeatherAPI()
         tenkiAPI = WeatherAPI()
 
-        city = u'三木市'
+        city = '三木市'
 
         api = 'openweathermap'
         key = weather_key.getkey(api)
         weather, temp_max, temp_min, humidity = \
             tenkiAPI.getWeather(api, key, city, )
 
-        print(city + u'、今日の天気は、「' + weather + u'」です。')
-        print(u'最高気温は、' + temp_max + u'℃。')
-        print(u'最低気温は、' + temp_min + u'℃。')
-        print(u'湿度は、' + humidity + u'%です。')
+        print(city + '、今日の天気は、「' + weather + '」です。')
+        print('最高気温は、' + temp_max + '℃。')
+        print('最低気温は、' + temp_min + '℃。')
+        print('湿度は、' + humidity + '%です。')
 
 
 

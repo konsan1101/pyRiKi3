@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -76,7 +76,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -224,7 +224,7 @@ class proc_uploader:
                     )
         container = azure_key.getkey('blob', 'container', )
         if (res != True):
-            qLog.log('critical', self.proc_id, u'認証エラー！', )
+            qLog.log('critical', self.proc_id, '認証エラー！', )
             self.proc_step = '9'
 
         while (self.proc_step == '5'):
@@ -323,7 +323,7 @@ class proc_uploader:
                             yyyymmdd = nowTime.strftime('%Y%m%d')
                             blobFile = qHOSTNAME + '/' + str(yyyymmdd) + '/' + proc_name
                             res = azureAPI.blob_put(container=container, inpPath=inpPath, inpFile=inpFile, blobFile=blobFile, )
-                            qLog.log('info', self.proc_id, inpPath + inpFile + u' → '  + blobFile + ' ' + str(res), )
+                            qLog.log('info', self.proc_id, inpPath + inpFile + ' → '  + blobFile + ' ' + str(res), )
 
                             if (res == True):
 

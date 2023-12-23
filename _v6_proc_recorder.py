@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -82,7 +82,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -271,7 +271,7 @@ def movie2jpg(proc_id, batch_index, index=0, dev='desktop',
         except Exception as e:
             pass
 
-    if (inpText.find(u'録画-') < 0):
+    if (inpText.find('録画-') < 0):
     #if (True):
 
         jpgok = False
@@ -454,9 +454,9 @@ def movie_proc(runMode, proc_id, batch_index, index, dev,
 
             # ログ
             if (outFile[-4:] == '.mp4'):
-                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namev + u' → ' + outFile, )
+                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namev + ' → ' + outFile, )
             if (outFile[-4:] == '.mp3'):
-                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namea + u' → ' + outFile, )
+                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namea + ' → ' + outFile, )
 
         if (mp4file != ''):
             qFunc.txtsWrite(qCtrl_result_recorder, txts=[mp4file], encoding='utf-8', exclusive=True, mode='w', )
@@ -481,7 +481,7 @@ def movie_proc(runMode, proc_id, batch_index, index, dev,
                     qFunc.copy(f, folder + outFile)
 
                 # ログ
-                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namev + u' → ' + outFile, )
+                qLog.log('debug', proc_id, 'thread ' + str(batch_index) + ' : ' + rec_namev + ' → ' + outFile, )
 
     # ワーク削除
     if (rec_filev != ''):
@@ -676,7 +676,7 @@ class proc_recorder:
                         dev   = self.rec_dev[i]
 
                         if (self.runMode != 'debug'):
-                            if  (title.find(u'録画') < 0):
+                            if  (title.find('録画') < 0):
                                 # 記録は5分間隔
                                 limit_sec = 60 * 5
                             else:
@@ -687,7 +687,7 @@ class proc_recorder:
 
                         if ((time.time() - self.rec_start[i]) > limit_sec):
 
-                            if  (title.find(u'録画') < 0):
+                            if  (title.find('録画') < 0):
 
                                 # 記録リスタート
                                 self.sub_start(index=0, proc_text='_rec_restart_', proc_title=title, dev=dev, cn_s=cn_s, )
@@ -747,7 +747,7 @@ class proc_recorder:
             qFunc.statusSet(self.fileRdy, False)
 
             # 記録終了
-            self.sub_proc(u'記録終了', cn_s, )
+            self.sub_proc('記録終了', cn_s, )
             qFunc.statusWait_false(self.fileBsy, 15)
 
             # ビジー解除
@@ -771,7 +771,7 @@ class proc_recorder:
     # 処理
     def sub_proc(self, proc_text, cn_s, ):
 
-        if (proc_text.find(u'リセット') >=0):
+        if (proc_text.find('リセット') >=0):
 
             # 全記録ストップ
             for i in range(1, self.rec_max+1):
@@ -781,10 +781,10 @@ class proc_recorder:
 
 
         elif (proc_text.lower() == '_rec_stop_') \
-          or (proc_text.find(u'記録') >=0) and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'記録') >=0) and (proc_text.find(u'終了') >=0) \
-          or (proc_text.find(u'録画') >=0) and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'録画') >=0) and (proc_text.find(u'終了') >=0):
+          or (proc_text.find('記録') >=0) and (proc_text.find('停止') >=0) \
+          or (proc_text.find('記録') >=0) and (proc_text.find('終了') >=0) \
+          or (proc_text.find('録画') >=0) and (proc_text.find('停止') >=0) \
+          or (proc_text.find('録画') >=0) and (proc_text.find('終了') >=0):
 
             # 全記録ストップ
             for i in range(1, self.rec_max+1):
@@ -792,20 +792,20 @@ class proc_recorder:
                     # 停止
                     self.sub_stop(i, '_stop_', 0, cn_s=cn_s, )
 
-        elif (proc_text.find(u'録画') >=0):
+        elif (proc_text.find('録画') >=0):
             # デバイス名取得
             cam, mic = dshow_dev()
             # デスクトップ録画スタート
             cam_dev = 'desktop'
-            title = qFunc.txt2filetxt(u'録画-' + cam_dev)
+            title = qFunc.txt2filetxt('録画-' + cam_dev)
             self.sub_start(index=0, proc_text=proc_text, proc_title=title, dev=cam_dev, cn_s=cn_s, )
             # カメラ録画スタート
             for cam_dev in cam:
-                title = qFunc.txt2filetxt(u'録画-' + cam_dev)
+                title = qFunc.txt2filetxt('録画-' + cam_dev)
                 self.sub_start(index=0, proc_text=proc_text, proc_title=title, dev=cam_dev, cn_s=cn_s, )
 
         elif (proc_text.lower() == '_rec_start_') \
-          or (proc_text.find(u'記録') >=0):
+          or (proc_text.find('記録') >=0):
             # デスクトップ記録スタート
             self.sub_start(index=0, proc_text=proc_text, proc_title='', dev='desktop', cn_s=cn_s, )
 
@@ -849,30 +849,30 @@ class proc_recorder:
 
             # メッセージ　記録＋開始　または　録画
             if ((proc_text.lower() == '_rec_start_') \
-             or (proc_text.find(u'記録') >=0)) \
-            and (proc_text.find(u'開始') >=0) \
+             or (proc_text.find('記録') >=0)) \
+            and (proc_text.find('開始') >=0) \
             and (dev == 'desktop'):
                 speechs = []
-                speechs.append({ 'text':u'記録を開始します。', 'wait':0, })
+                speechs.append({ 'text':'記録を開始します。', 'wait':0, })
                 qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
-            elif (proc_text.find(u'録画') >=0) \
-            and  (proc_text.find(u'開始') >=0) \
+            elif (proc_text.find('録画') >=0) \
+            and  (proc_text.find('開始') >=0) \
             and  (dev == 'desktop'):
                 speechs = []
-                speechs.append({ 'text':u'録画を開始します。', 'wait':0, })
+                speechs.append({ 'text':'録画を開始します。', 'wait':0, })
                 qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             elif (proc_text.lower() == '_rec_restart_') \
             and (dev == 'desktop'):
                 speechs = []
-                speechs.append({ 'text':u'記録は継続しています。', 'wait':0, })
+                speechs.append({ 'text':'記録は継続しています。', 'wait':0, })
                 qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             if  (proc_text.lower() == '_rec_start_') \
              or (proc_text.lower() == '_rec_restart_') \
-             or (proc_text.find(u'記録') >=0) \
-             or (proc_text.find(u'録画') >=0):
+             or (proc_text.find('記録') >=0) \
+             or (proc_text.find('録画') >=0):
 
                 # デバイス名取得
                 cam, mic = dshow_dev()
@@ -886,13 +886,13 @@ class proc_recorder:
                 # 連続録画
                 if (proc_text.lower() == '_rec_start_') \
                 or (proc_text.lower() == '_rec_restart_') \
-                or (proc_text.find(u'開始') >=0):
+                or (proc_text.find('開始') >=0):
                     self.rec_text[index]  = proc_text
                     self.rec_dev[index]   = dev
                     self.rec_start[index] = time.time()
                     self.rec_limit[index] = None
 
-                    if  (proc_title.find(u'録画') < 0):
+                    if  (proc_title.find('録画') < 0):
                         self.rec_title[index] = ''
                         self.rec_filev[index] = qPath_work + stamp + '.mp4'
                         self.rec_filea[index] = ''
@@ -1064,7 +1064,7 @@ class proc_recorder:
 
             # メッセージ
             speechs = []
-            speechs.append({ 'text':u'記録を終了しました。', 'wait':0, })
+            speechs.append({ 'text':'記録を終了しました。', 'wait':0, })
             qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             # ビジー解除
@@ -1124,35 +1124,35 @@ if __name__ == '__main__':
     # テスト実行
     if (len(sys.argv) < 2):
 
-        recorder_thread.put(['control', u'録画開始'])
+        recorder_thread.put(['control', '録画開始'])
 
         time.sleep(130)
 
-        recorder_thread.put(['control', u'録画終了'])
+        recorder_thread.put(['control', '録画終了'])
 
         time.sleep(60)
 
-        recorder_thread.put(['control', u'記録開始'])
+        recorder_thread.put(['control', '記録開始'])
 
         time.sleep(130)
 
-        recorder_thread.put(['control', u'デスクトップの記録1'])
+        recorder_thread.put(['control', 'デスクトップの記録1'])
 
         time.sleep(10)
 
-        recorder_thread.put(['control', u'デスクトップの記録2'])
+        recorder_thread.put(['control', 'デスクトップの記録2'])
 
         time.sleep(10)
 
-        recorder_thread.put(['control', u'記録終了'])
+        recorder_thread.put(['control', '記録終了'])
 
         time.sleep(10)
 
-        recorder_thread.put(['control', u'録画開始'])
+        recorder_thread.put(['control', '録画開始'])
 
         time.sleep(90)
 
-        recorder_thread.put(['control', u'録画終了'])
+        recorder_thread.put(['control', '録画終了'])
 
         qFunc.statusWait_false(qBusy_d_rec, falseWait=30)
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -102,7 +102,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -409,17 +409,17 @@ class main_kernel:
                 time.sleep(2.00)
 
                 if   (self.runMode == 'debug'):
-                    speechs.append({ 'text':u'ハンズフリーコントロールシステムをデバッグモードで、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ハンズフリーコントロールシステムをデバッグモードで、起動しました。', 'wait':0, })
                 elif (self.runMode == 'live'):
-                    speechs.append({ 'text':u'ハンズフリー翻訳機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ハンズフリー翻訳機能を、起動しました。', 'wait':0, })
                 elif (self.runMode == 'hud'):
-                    speechs.append({ 'text':u'ヘッドアップディスプレイ機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ヘッドアップディスプレイ機能を、起動しました。', 'wait':0, })
                 elif (self.runMode == 'camera'):
-                    speechs.append({ 'text':u'ハンズフリーカメラ機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ハンズフリーカメラ機能を、起動しました。', 'wait':0, })
                 elif (self.runMode == 'assistant'):
-                    speechs.append({ 'text':u'ＡＩアシスタント機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ＡＩアシスタント機能を、起動しました。', 'wait':0, })
                 elif (self.runMode == 'reception'):
-                    speechs.append({ 'text':u'ＡＩ受付機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ＡＩ受付機能を、起動しました。', 'wait':0, })
 
             if (main_speech_run is not None) and (main_speech_switch != 'on'):
                 time.sleep(10.00)
@@ -442,7 +442,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'カメラ機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'カメラ機能を、起動しました。', 'wait':0, })
 
             if (main_vision_run is not None) and (main_vision_switch != 'on'):
                 time.sleep(10.00)
@@ -452,7 +452,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'カメラ機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'カメラ機能を、終了しました。', 'wait':0, })
 
             if (main_desktop_run is None) and (main_desktop_switch == 'on'):
                 cn_s.put(['_guide_', 'main_desktop start!'])
@@ -469,7 +469,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'デスクトップ制御機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'デスクトップ制御機能を、起動しました。', 'wait':0, })
 
             if (main_desktop_run is not None) and (main_desktop_switch != 'on'):
                 time.sleep(10.00)
@@ -479,7 +479,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'デスクトップ制御機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'デスクトップ制御機能を、終了しました。', 'wait':0, })
 
             if (bgm_run is None) and (bgm_switch == 'on'):
                 cn_s.put(['_guide_', 'bgm control start!'])
@@ -494,7 +494,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'ＢＧＭ再生機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ＢＧＭ再生機能を、起動しました。', 'wait':0, })
 
             if (bgm_run is not None) and (bgm_switch != 'on'):
                 qFunc.txtsWrite(qCtrl_control_bgm, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
@@ -505,7 +505,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'ＢＧＭ再生機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'ＢＧＭ再生機能を、終了しました。', 'wait':0, })
 
             if (browser_run is None) and (browser_switch == 'on'):
                 cn_s.put(['_guide_', 'browser control start!'])
@@ -520,7 +520,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'ブラウザー連携機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'ブラウザー連携機能を、起動しました。', 'wait':0, })
 
             if (browser_run is not None) and (browser_switch != 'on'):
                 qFunc.txtsWrite(qCtrl_control_browser, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
@@ -531,7 +531,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'ブラウザー連携機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'ブラウザー連携機能を、終了しました。', 'wait':0, })
 
             if (player_run is None) and (player_switch == 'on'):
                 cn_s.put(['_guide_', 'player control start!'])
@@ -546,7 +546,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'動画連携機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'動画連携機能を、起動しました。', 'wait':0, })
 
             if (player_run is not None) and (player_switch != 'on'):
                 qFunc.txtsWrite(qCtrl_control_player, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
@@ -557,7 +557,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'動画連携機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'動画連携機能を、終了しました。', 'wait':0, })
 
             if (telop_run is None) and (telop_switch == 'on'):
                 cn_s.put(['_guide_', 'telop control start!'])
@@ -572,7 +572,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'テロップ表示機能を、起動しました。', 'wait':0, })
+                    speechs.append({ 'text':'テロップ表示機能を、起動しました。', 'wait':0, })
 
             if (telop_run is not None) and (telop_switch != 'on'):
                 qFunc.txtsWrite(qCtrl_control_telop, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
@@ -583,7 +583,7 @@ class main_kernel:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'テロップ表示機能を、終了しました。', 'wait':0, })
+                    speechs.append({ 'text':'テロップ表示機能を、終了しました。', 'wait':0, })
 
             if (len(speechs) != 0):
                 qRiKi.speech(id=main_id, speechs=speechs, lang='', )
@@ -595,7 +595,7 @@ class main_kernel:
                 or (self.runMode == 'live'):
                     time.sleep(40)
                     speechs = []
-                    speechs.append({ 'text':u'全ての準備が整いました。スタンバイしています。', 'wait':0, })
+                    speechs.append({ 'text':'全ての準備が整いました。スタンバイしています。', 'wait':0, })
                     qRiKi.speech(id=main_id, speechs=speechs, lang='', )
 
             # レディー設定

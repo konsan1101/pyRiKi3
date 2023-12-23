@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -157,8 +157,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 
@@ -173,7 +173,7 @@ class SpeechAPI:
 
         return res_text, res_api
 
-    def translate(self, inpText=u'こんにちは', inpLang='ja-JP', outLang='en-US', ):
+    def translate(self, inpText='こんにちは', inpLang='ja-JP', outLang='en-US', ):
         if (self.tra_key is None):
             print('WATSON: Not Authenticate Error !')
 
@@ -241,8 +241,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 

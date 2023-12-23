@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -71,7 +71,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -307,7 +307,7 @@ class proc_controlv:
 
                                     # ログ
                                     #if (self.runMode == 'debug') or (not self.camDev.isdigit()):
-                                    #    qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                    #    qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # 結果出力
                                     #if (cn_s.qsize() < 99):
@@ -386,14 +386,14 @@ class proc_controlv:
         if (fproc == True) or (proc_text[:1] == '_'):
 
             # システム制御
-            if (proc_text.find(u'リセット') >= 0):
+            if (proc_text.find('リセット') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 out_name  = 'control'
                 out_value = '_reset_'
                 cn_s.put([out_name, out_value])
 
-            elif ((proc_text.find(u'システム') >= 0) and (proc_text.find(u'終了') >= 0)) \
-            or    (proc_text == u'バルス'):
+            elif ((proc_text.find('システム') >= 0) and (proc_text.find('終了') >= 0)) \
+            or    (proc_text == 'バルス'):
                 qFunc.statusSet(qRdy__s_force, False)
                 out_name  = 'control'
                 out_value = '_end_'
@@ -401,21 +401,21 @@ class proc_controlv:
 
             # カメラ制御
             elif (self.runMode == 'assistant') \
-            and  (proc_text == u'カメラ'):
+            and  (proc_text == 'カメラ'):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, False)
                 qFunc.statusSet(qBusy_dev_cam,  False)
                 qFunc.statusSet(qBusy_dev_dsp,  False)
             elif (self.runMode == 'assistant') \
-            and  (proc_text.find(u'カメラ') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            and  (proc_text.find('カメラ') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, False)
                 qFunc.statusSet(qBusy_dev_cam,  False)
                 qFunc.statusSet(qBusy_dev_dsp,  False)
             elif (self.runMode == 'assistant') \
-            and  (proc_text.find(u'カメラ') >= 0) \
-            and  (proc_text.find(u'終了') >= 0):
+            and  (proc_text.find('カメラ') >= 0) \
+            and  (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, False)
                 qFunc.statusSet(qBusy_dev_cam,  True )
@@ -423,21 +423,21 @@ class proc_controlv:
 
             # ミラー制御
             elif (self.runMode == 'assistant') \
-            and  (proc_text == u'ミラー'):
+            and  (proc_text == 'ミラー'):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, True )
                 qFunc.statusSet(qBusy_dev_cam,  False)
                 qFunc.statusSet(qBusy_dev_dsp,  False)
             elif (self.runMode == 'assistant') \
-            and  (proc_text.find(u'ミラー') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            and  (proc_text.find('ミラー') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, True )
                 qFunc.statusSet(qBusy_dev_cam,  False)
                 qFunc.statusSet(qBusy_dev_dsp,  False)
             elif (self.runMode == 'assistant') \
-            and  (proc_text.find(u'ミラー') >= 0) \
-            and  (proc_text.find(u'終了') >= 0):
+            and  (proc_text.find('ミラー') >= 0) \
+            and  (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force,  False)
                 qFunc.statusSet(qRdy__v_mirror, False)
                 qFunc.statusSet(qBusy_dev_cam,  True )
@@ -450,62 +450,62 @@ class proc_controlv:
 
             # カメラ操作
             if   ((self.runMode == 'camera') or (self.runMode == 'assistant')) \
-            and  (proc_text == u'エンター'):
+            and  (proc_text == 'エンター'):
                 out_name  = 'control'
                 out_value = '_enter_'
                 cn_s.put([out_name, out_value])
             elif ((self.runMode == 'camera') or (self.runMode == 'assistant')) \
-            and  (proc_text == u'キャンセル'):
+            and  (proc_text == 'キャンセル'):
                 out_name  = 'control'
                 out_value = '_cancel_'
                 cn_s.put([out_name, out_value])
             elif ((self.runMode == 'camera') or (self.runMode == 'assistant')) \
-            and  (proc_text == u'クローズ'):
+            and  (proc_text == 'クローズ'):
                 out_name  = 'control'
                 out_value = '_close_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text.find(u'撮影') >= 0) or (proc_text.find(u'シャッタ') >= 0):
+            elif (proc_text.find('撮影') >= 0) or (proc_text.find('シャッタ') >= 0):
                 out_name  = 'control'
                 out_value = '_shutter_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text == u'ズーム') or (proc_text.find(u'ズームイン') >= 0):
+            elif (proc_text == 'ズーム') or (proc_text.find('ズームイン') >= 0):
                 out_name  = 'control'
                 out_value = '_zoomin_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text.find(u'ズームアウト') >= 0):
+            elif (proc_text.find('ズームアウト') >= 0):
                 out_name  = 'control'
                 out_value = '_zoomout_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text.find(u'回転') >= 0):
+            elif (proc_text.find('回転') >= 0):
                 out_name  = 'control'
                 out_value = '_rotate_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text.find(u'台形') >= 0) or (proc_text.find(u'補正') >= 0):
+            elif (proc_text.find('台形') >= 0) or (proc_text.find('補正') >= 0):
                 out_name  = 'control'
                 out_value = '_stretch_'
                 cn_s.put([out_name, out_value])
             
-            elif (proc_text.find(u'背景') >= 0):
+            elif (proc_text.find('背景') >= 0):
                 out_name  = 'control'
                 out_value = '_assistant_'
                 cn_s.put([out_name, out_value])
             
-            elif (proc_text.find(u'ブラック') >= 0):
+            elif (proc_text.find('ブラック') >= 0):
                 out_name  = 'control'
                 out_value = '_black_'
                 cn_s.put([out_name, out_value])
             
-            elif (proc_text.find(u'ホワイト') >= 0):
+            elif (proc_text.find('ホワイト') >= 0):
                 out_name  = 'control'
                 out_value = '_white_'
                 cn_s.put([out_name, out_value])
             
-            elif (proc_text.find(u'カメラ変更') >= 0):
+            elif (proc_text.find('カメラ変更') >= 0):
                 out_name  = 'control'
                 out_value = '_camchange_off_'
                 cn_s.put([out_name, out_value])
@@ -514,31 +514,31 @@ class proc_controlv:
                 out_value = '_camchange_on_'
                 cn_s.put([out_name, out_value])
 
-            elif (proc_text.find(u'ここ')   >= 0) \
-            or   (proc_text.find(u'これ')   >= 0) \
-            or   (proc_text.find(u'こちら') >= 0) \
-            or   (proc_text.find(u'こっち') >= 0) \
-            or   (proc_text.find(u'そこ')   >= 0) \
-            or   (proc_text.find(u'それ')   >= 0) \
-            or   (proc_text.find(u'そちら') >= 0) \
-            or   (proc_text.find(u'そっち') >= 0) \
-            or   (proc_text.find(u'あそこ') >= 0) \
-            or   (proc_text.find(u'あれ')   >= 0) \
-            or   (proc_text.find(u'あちら') >= 0) \
-            or   (proc_text.find(u'あっち') >= 0) \
-            or   (proc_text.find(u'まえ')   >= 0) \
-            or   (proc_text.find(u'前')     >= 0) \
-            or   (proc_text.find(u'うしろ') >= 0) \
-            or   (proc_text.find(u'後')     >= 0) \
-            or   (proc_text.find(u'ひだり') >= 0) \
-            or   (proc_text.find(u'左')     >= 0) \
-            or   (proc_text.find(u'みぎ')   >= 0) \
-            or   (proc_text.find(u'右')     >= 0) \
-            or   (proc_text.find(u'注意')   >= 0) \
-            or   (proc_text.find(u'写真')   >= 0) \
-            or   (proc_text.find(u'伝票')   >= 0) \
-            or   (proc_text.find(u'計測')   >= 0) \
-            or   (proc_text.find(u'測定')   >= 0):
+            elif (proc_text.find('ここ')   >= 0) \
+            or   (proc_text.find('これ')   >= 0) \
+            or   (proc_text.find('こちら') >= 0) \
+            or   (proc_text.find('こっち') >= 0) \
+            or   (proc_text.find('そこ')   >= 0) \
+            or   (proc_text.find('それ')   >= 0) \
+            or   (proc_text.find('そちら') >= 0) \
+            or   (proc_text.find('そっち') >= 0) \
+            or   (proc_text.find('あそこ') >= 0) \
+            or   (proc_text.find('あれ')   >= 0) \
+            or   (proc_text.find('あちら') >= 0) \
+            or   (proc_text.find('あっち') >= 0) \
+            or   (proc_text.find('まえ')   >= 0) \
+            or   (proc_text.find('前')     >= 0) \
+            or   (proc_text.find('うしろ') >= 0) \
+            or   (proc_text.find('後')     >= 0) \
+            or   (proc_text.find('ひだり') >= 0) \
+            or   (proc_text.find('左')     >= 0) \
+            or   (proc_text.find('みぎ')   >= 0) \
+            or   (proc_text.find('右')     >= 0) \
+            or   (proc_text.find('注意')   >= 0) \
+            or   (proc_text.find('写真')   >= 0) \
+            or   (proc_text.find('伝票')   >= 0) \
+            or   (proc_text.find('計測')   >= 0) \
+            or   (proc_text.find('測定')   >= 0):
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live') \
                 or (self.runMode == 'hud') \

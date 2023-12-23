@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -599,7 +599,7 @@ if __name__ == '__main__':
 
     db_server   = 'tcp:#server#,1433'
     db_database = '#database#'
-    db_username = 'kondou'
+    db_username = 'kondo'
     db_password = 'secret'
 
     qDB = qDB_class()

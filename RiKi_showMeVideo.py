@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -528,7 +528,7 @@ if __name__ == '__main__':
                     # 曜日チェック
                     if (about_play == False):
                         if (day_control == 'week'):
-                            if (YOUBI not in ['mon','tue','wed','thu','fri']):
+                            if (YOUBI not in ['mon','tue','wed','th','fri']):
                                 qLog.log('info', main_id, 'Play Stop! By day check. (day_control=' + day_control + ')' )
                                 about_play = True
                         elif (day_control != 'yes') and (day_control != 'no'):
@@ -644,7 +644,7 @@ if __name__ == '__main__':
                 # 曜日チェック
                 if (new_play == True):
                     if (day_control == 'week'):
-                        if (YOUBI not in ['mon','tue','wed','thu','fri']):
+                        if (YOUBI not in ['mon','tue','wed','th','fri']):
                             time.sleep(5.00)
                             new_play = False
                     elif (day_control != 'yes') and (day_control != 'no'):

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             if (txt != ''):
 
                 f = txt.replace(' ','_')
-                f = f.replace(u'　','_')
+                f = f.replace('　','_')
                 f = f.replace('"','_')
                 f = f.replace('$','_')
                 f = f.replace('%','_')
@@ -84,7 +84,7 @@ if __name__ == '__main__':
                 f = f.replace('<','_')
                 f = f.replace('>','_')
                 if (len(f)>100):
-                    f = f[:100] + u'…'
+                    f = f[:100] + '…'
 
                 f1 = 'narration/tts/' + fileId[:-4] + '.txt'
                 f2 = 'narration/tts/' + fileId[:-4] + '.[' + f + '].txt'

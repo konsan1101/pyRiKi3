@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -251,7 +251,7 @@ class qRiKi_class:
         if (field == 'qPath_d_telop'   ): return qPath_d_telop
         if (field == 'qPath_d_upload'  ): return qPath_d_upload
 
-        if (field == 'qBusy_dev_cpu'   ): return qBusy_dev_cpu
+        if (field == 'qBusy_dev_cp'   ): return qBusy_dev_cpu
         if (field == 'qBusy_dev_com'   ): return qBusy_dev_com
         if (field == 'qBusy_dev_mic'   ): return qBusy_dev_mic
         if (field == 'qBusy_dev_spk'   ): return qBusy_dev_spk
@@ -295,17 +295,17 @@ class qRiKi_class:
 
     def checkWakeUpWord(self, txt='', ):
         proc_text = txt.lower()
-        if (proc_text == u'力') or (proc_text == u'りき') \
-        or (proc_text == u'リキ') or (proc_text == u'リッキー') \
-        or (proc_text == u'三木') or (proc_text == u'みき') \
-        or (proc_text == u'ミキ') or (proc_text == u'ミッキー') \
-        or (proc_text == u'理系') \
-        or (proc_text == u'ウィキ') \
+        if (proc_text == '力') or (proc_text == 'りき') \
+        or (proc_text == 'リキ') or (proc_text == 'リッキー') \
+        or (proc_text == '三木') or (proc_text == 'みき') \
+        or (proc_text == 'ミキ') or (proc_text == 'ミッキー') \
+        or (proc_text == '理系') \
+        or (proc_text == 'ウィキ') \
         or (proc_text == 'riki') \
         or (proc_text == 'miki') or (proc_text == 'mickey') \
         or (proc_text == 'wiki') \
-        or (proc_text == u'フォース') or (proc_text == 'force') \
-        or (proc_text[:6] == u'コンピュータ') or (proc_text == 'computer') \
+        or (proc_text == 'フォース') or (proc_text == 'force') \
+        or (proc_text[:6] == 'コンピュータ') or (proc_text == 'computer') \
         or (proc_text.find('riki,') >= 0):
             return True
         else:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -359,9 +359,9 @@ class qFunc_class:
 
     def txt2filetxt(self, txt='', ):
         ftxt = txt.replace(' ','_')
-        ftxt = ftxt.replace(u'　','_')
-        ftxt = ftxt.replace(u'、','_')
-        ftxt = ftxt.replace(u'。','_')
+        ftxt = ftxt.replace('　','_')
+        ftxt = ftxt.replace('、','_')
+        ftxt = ftxt.replace('。','_')
         ftxt = ftxt.replace('"','_')
         ftxt = ftxt.replace('$','_')
         ftxt = ftxt.replace('%','_')
@@ -402,10 +402,10 @@ class qFunc_class:
         if (s >= 0):
             ftxt = ftxt[:s]
 
-        ftxt = ftxt.replace(u' ','')
-        ftxt = ftxt.replace(u'　','_')
-        ftxt = ftxt.replace(u'、','.')
-        ftxt = ftxt.replace(u'。','.')
+        ftxt = ftxt.replace(' ','')
+        ftxt = ftxt.replace('　','_')
+        ftxt = ftxt.replace('、','.')
+        ftxt = ftxt.replace('。','.')
         ftxt = ftxt.replace('"','')
         ftxt = ftxt.replace('$','_')
         ftxt = ftxt.replace('%','_')

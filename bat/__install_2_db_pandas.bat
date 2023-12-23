@@ -1,6 +1,6 @@
 @ECHO OFF
 REM ------------------------------------------------
-REM COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+REM COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 REM This software is released under the MIT License.
 REM https://github.com/konsan1101
 REM Thank you for keeping the rules.
@@ -16,7 +16,7 @@ rem           pip  install --upgrade pip
     python -m pip  install --upgrade pip
     python -m pip  install --upgrade wheel
     python -m pip  install --upgrade setuptools
-    python -m pip  install --upgrade pyinstaller
+    python -m pip  install --upgrade pyinstaller==6.1.0
 
 ECHO;
 ECHO Waiting...10s

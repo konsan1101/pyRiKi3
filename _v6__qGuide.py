@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -574,7 +574,7 @@ if __name__ == '__main__':
     if (True):
         img = cv2.imread(qPath_icons + 'RiKi_base.png')
         qGuide.init(screen=0, panel='5', title='_guide_', image=img,)
-        qGuide.setMessage(txt=u'こんにちは', )
+        qGuide.setMessage(txt='こんにちは', )
         #qGuide.open()
 
         chkTime = time.time()

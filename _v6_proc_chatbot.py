@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -76,7 +76,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -152,31 +152,53 @@ class proc_coreChat:
         self.proc_step = '0'
         self.proc_seq  = 0
 
-        res = openaiAPI.authenticate('chatgpt',
-                         openai_key.getkey('chatgpt','openai_api_type'),
-                         openai_key.getkey('chatgpt','openai_organization'),
-                         openai_key.getkey('chatgpt','openai_key_id'),
-                         openai_key.getkey('chatgpt','gpt_a_nick_name'),
-                         openai_key.getkey('chatgpt','gpt_a_model1'),
-                         openai_key.getkey('chatgpt','gpt_a_token1'),
-                         openai_key.getkey('chatgpt','gpt_a_model2'),
-                         openai_key.getkey('chatgpt','gpt_a_token2'),
-                         openai_key.getkey('chatgpt','gpt_a_model3'),
-                         openai_key.getkey('chatgpt','gpt_a_token3'),
-                         openai_key.getkey('chatgpt','gpt_b_nick_name'),
-                         openai_key.getkey('chatgpt','gpt_b_model1'),
-                         openai_key.getkey('chatgpt','gpt_b_token1'),
-                         openai_key.getkey('chatgpt','gpt_b_model2'),
-                         openai_key.getkey('chatgpt','gpt_b_token2'),
-                         openai_key.getkey('chatgpt','gpt_b_model3'),
-                         openai_key.getkey('chatgpt','gpt_b_token3'),
-                         openai_key.getkey('chatgpt','gpt_b_length'),
-                         openai_key.getkey('chatgpt','azure_endpoint'),
-                         openai_key.getkey('chatgpt','azure_version'),
-                         openai_key.getkey('chatgpt','azure_key_id'),
-                         openai_key.getkey('chatgpt','azure_deploy_model'),
-                         openai_key.getkey('chatgpt','azure_deploy_token'),
-                        )
+        api_type = openai_key.getkey('chatgpt','openai_api_type')
+        if (api_type != 'azure'):
+            res = openaiAPI.authenticate('chatgpt',
+                            api_type,
+                            openai_key.getkey('chatgpt','openai_default_gpt'), openai_key.getkey('chatgpt','openai_default_class'),
+                            openai_key.getkey('chatgpt','openai_auto_continue'),
+                            openai_key.getkey('chatgpt','openai_max_step'), openai_key.getkey('chatgpt','openai_max_assistant'),
+                            openai_key.getkey('chatgpt','openai_organization'), openai_key.getkey('chatgpt','openai_key_id'),
+                            openai_key.getkey('chatgpt','azure_endpoint'), openai_key.getkey('chatgpt','azure_version'), openai_key.getkey('chatgpt','azure_key_id'),
+                            openai_key.getkey('chatgpt','gpt_a_nick_name'),
+                            openai_key.getkey('chatgpt','gpt_a_model1'), openai_key.getkey('chatgpt','gpt_a_token1'),
+                            openai_key.getkey('chatgpt','gpt_a_model2'), openai_key.getkey('chatgpt','gpt_a_token2'),
+                            openai_key.getkey('chatgpt','gpt_a_model3'), openai_key.getkey('chatgpt','gpt_a_token3'),
+                            openai_key.getkey('chatgpt','gpt_b_nick_name'),
+                            openai_key.getkey('chatgpt','gpt_b_model1'), openai_key.getkey('chatgpt','gpt_b_token1'),
+                            openai_key.getkey('chatgpt','gpt_b_model2'), openai_key.getkey('chatgpt','gpt_b_token2'),
+                            openai_key.getkey('chatgpt','gpt_b_model3'), openai_key.getkey('chatgpt','gpt_b_token3'),
+                            openai_key.getkey('chatgpt','gpt_b_length'),
+                            openai_key.getkey('chatgpt','gpt_v_nick_name'),
+                            openai_key.getkey('chatgpt','gpt_v_model1'), openai_key.getkey('chatgpt','gpt_v_token1'),
+                            openai_key.getkey('chatgpt','gpt_x_nick_name'),
+                            openai_key.getkey('chatgpt','gpt_x_model1'), openai_key.getkey('chatgpt','gpt_x_token1'),
+                            openai_key.getkey('chatgpt','gpt_x_model2'), openai_key.getkey('chatgpt','gpt_x_token2'),
+                            )
+        else:
+            res = openaiAPI.authenticate('chatgpt',
+                            api_type,
+                            openai_key.getkey('chatgpt','openai_default_gpt'), openai_key.getkey('chatgpt','openai_default_class'),
+                            openai_key.getkey('chatgpt','openai_auto_continue'),
+                            openai_key.getkey('chatgpt','openai_max_step'), openai_key.getkey('chatgpt','openai_max_assistant'),
+                            openai_key.getkey('chatgpt','openai_organization'), openai_key.getkey('chatgpt','openai_key_id'),
+                            openai_key.getkey('chatgpt','azure_endpoint'), openai_key.getkey('chatgpt','azure_version'), openai_key.getkey('chatgpt','azure_key_id'),
+                            openai_key.getkey('chatgpt','azure_a_nick_name'),
+                            openai_key.getkey('chatgpt','azure_a_model1'), openai_key.getkey('chatgpt','azure_a_token1'),
+                            openai_key.getkey('chatgpt','azure_a_model2'), openai_key.getkey('chatgpt','azure_a_token2'),
+                            openai_key.getkey('chatgpt','azure_a_model3'), openai_key.getkey('chatgpt','azure_a_token3'),
+                            openai_key.getkey('chatgpt','azure_b_nick_name'),
+                            openai_key.getkey('chatgpt','azure_b_model1'), openai_key.getkey('chatgpt','azure_b_token1'),
+                            openai_key.getkey('chatgpt','azure_b_model2'), openai_key.getkey('chatgpt','azure_b_token2'),
+                            openai_key.getkey('chatgpt','azure_b_model3'), openai_key.getkey('chatgpt','azure_b_token3'),
+                            openai_key.getkey('chatgpt','azure_b_length'),
+                            openai_key.getkey('chatgpt','azure_v_nick_name'),
+                            openai_key.getkey('chatgpt','azure_v_model1'), openai_key.getkey('chatgpt','azure_v_token1'),
+                            openai_key.getkey('chatgpt','azure_x_nick_name'),
+                            openai_key.getkey('chatgpt','azure_x_model1'), openai_key.getkey('chatgpt','azure_x_token1'),
+                            openai_key.getkey('chatgpt','azure_x_model2'), openai_key.getkey('chatgpt','azure_x_token2'),
+                            )
         self.last_chat = time.time()
 
     def __del__(self, ):
@@ -359,7 +381,7 @@ class proc_coreChat:
 
                                     # ログ
                                     if (self.runMode == 'debug'):
-                                        qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                        qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # ビジー設定
                                     if (qFunc.statusCheck(self.fileBsy) == False):
@@ -427,33 +449,57 @@ class proc_coreChat:
     def sub_proc(self, seq4, proc_file, work_file, proc_name, proc_txt, cn_s, ):
         #print('chat:', proc_txt )
 
+        api_type = openai_key.getkey('chatgpt','openai_api_type')
+        print(api_type)
+
         # Chat Bot 認証
         if ((time.time() - self.last_chat) > 180):
-            res = openaiAPI.authenticate('chatgpt',
-                            openai_key.getkey('chatgpt','openai_api_type'),
-                            openai_key.getkey('chatgpt','openai_organization'),
-                            openai_key.getkey('chatgpt','openai_key_id'),
-                            openai_key.getkey('chatgpt','gpt_a_nick_name'),
-                            openai_key.getkey('chatgpt','gpt_a_model1'),
-                            openai_key.getkey('chatgpt','gpt_a_token1'),
-                            openai_key.getkey('chatgpt','gpt_a_model2'),
-                            openai_key.getkey('chatgpt','gpt_a_token2'),
-                            openai_key.getkey('chatgpt','gpt_a_model3'),
-                            openai_key.getkey('chatgpt','gpt_a_token3'),
-                            openai_key.getkey('chatgpt','gpt_b_nick_name'),
-                            openai_key.getkey('chatgpt','gpt_b_model1'),
-                            openai_key.getkey('chatgpt','gpt_b_token1'),
-                            openai_key.getkey('chatgpt','gpt_b_model2'),
-                            openai_key.getkey('chatgpt','gpt_b_token2'),
-                            openai_key.getkey('chatgpt','gpt_b_model3'),
-                            openai_key.getkey('chatgpt','gpt_b_token3'),
-                            openai_key.getkey('chatgpt','gpt_b_length'),
-                            openai_key.getkey('chatgpt','azure_endpoint'),
-                            openai_key.getkey('chatgpt','azure_version'),
-                            openai_key.getkey('chatgpt','azure_key_id'),
-                            openai_key.getkey('chatgpt','azure_deploy_model'),
-                            openai_key.getkey('chatgpt','azure_deploy_token'),
-                            )
+            if (api_type != 'azure'):
+                res = openaiAPI.authenticate('chatgpt',
+                                api_type,
+                                openai_key.getkey('chatgpt','openai_default_gpt'), openai_key.getkey('chatgpt','openai_default_class'),
+                                openai_key.getkey('chatgpt','openai_auto_continue'),
+                                openai_key.getkey('chatgpt','openai_max_step'), openai_key.getkey('chatgpt','openai_max_assistant'),
+                                openai_key.getkey('chatgpt','openai_organization'), openai_key.getkey('chatgpt','openai_key_id'),
+                                openai_key.getkey('chatgpt','azure_endpoint'), openai_key.getkey('chatgpt','azure_version'), openai_key.getkey('chatgpt','azure_key_id'),
+                                openai_key.getkey('chatgpt','gpt_a_nick_name'),
+                                openai_key.getkey('chatgpt','gpt_a_model1'), openai_key.getkey('chatgpt','gpt_a_token1'),
+                                openai_key.getkey('chatgpt','gpt_a_model2'), openai_key.getkey('chatgpt','gpt_a_token2'),
+                                openai_key.getkey('chatgpt','gpt_a_model3'), openai_key.getkey('chatgpt','gpt_a_token3'),
+                                openai_key.getkey('chatgpt','gpt_b_nick_name'),
+                                openai_key.getkey('chatgpt','gpt_b_model1'), openai_key.getkey('chatgpt','gpt_b_token1'),
+                                openai_key.getkey('chatgpt','gpt_b_model2'), openai_key.getkey('chatgpt','gpt_b_token2'),
+                                openai_key.getkey('chatgpt','gpt_b_model3'), openai_key.getkey('chatgpt','gpt_b_token3'),
+                                openai_key.getkey('chatgpt','gpt_b_length'),
+                                openai_key.getkey('chatgpt','gpt_v_nick_name'),
+                                openai_key.getkey('chatgpt','gpt_v_model1'), openai_key.getkey('chatgpt','gpt_v_token1'),
+                                openai_key.getkey('chatgpt','gpt_x_nick_name'),
+                                openai_key.getkey('chatgpt','gpt_x_model1'), openai_key.getkey('chatgpt','gpt_x_token1'),
+                                openai_key.getkey('chatgpt','gpt_x_model2'), openai_key.getkey('chatgpt','gpt_x_token2'),
+                                )
+            else:
+                res = openaiAPI.authenticate('chatgpt',
+                                api_type,
+                                openai_key.getkey('chatgpt','openai_default_gpt'), openai_key.getkey('chatgpt','openai_default_class'),
+                                openai_key.getkey('chatgpt','openai_auto_continue'),
+                                openai_key.getkey('chatgpt','openai_max_step'), openai_key.getkey('chatgpt','openai_max_assistant'),
+                                openai_key.getkey('chatgpt','openai_organization'), openai_key.getkey('chatgpt','openai_key_id'),
+                                openai_key.getkey('chatgpt','azure_endpoint'), openai_key.getkey('chatgpt','azure_version'), openai_key.getkey('chatgpt','azure_key_id'),
+                                openai_key.getkey('chatgpt','azure_a_nick_name'),
+                                openai_key.getkey('chatgpt','azure_a_model1'), openai_key.getkey('chatgpt','azure_a_token1'),
+                                openai_key.getkey('chatgpt','azure_a_model2'), openai_key.getkey('chatgpt','azure_a_token2'),
+                                openai_key.getkey('chatgpt','azure_a_model3'), openai_key.getkey('chatgpt','azure_a_token3'),
+                                openai_key.getkey('chatgpt','azure_b_nick_name'),
+                                openai_key.getkey('chatgpt','azure_b_model1'), openai_key.getkey('chatgpt','azure_b_token1'),
+                                openai_key.getkey('chatgpt','azure_b_model2'), openai_key.getkey('chatgpt','azure_b_token2'),
+                                openai_key.getkey('chatgpt','azure_b_model3'), openai_key.getkey('chatgpt','azure_b_token3'),
+                                openai_key.getkey('chatgpt','azure_b_length'),
+                                openai_key.getkey('chatgpt','azure_v_nick_name'),
+                                openai_key.getkey('chatgpt','azure_v_model1'), openai_key.getkey('chatgpt','azure_v_token1'),
+                                openai_key.getkey('chatgpt','azure_x_nick_name'),
+                                openai_key.getkey('chatgpt','azure_x_model1'), openai_key.getkey('chatgpt','azure_x_token1'),
+                                openai_key.getkey('chatgpt','azure_x_model2'), openai_key.getkey('chatgpt','azure_x_token2'),
+                                )
             self.last_chat = time.time()
 
         # Chat Bot 実行
@@ -462,8 +508,9 @@ class proc_coreChat:
         inpText = proc_txt
         #print('input  :', inpText, )
         res_txt, res_path, res_name, res_api, openaiAPI.history = openaiAPI.chatBot(
-                    history=openaiAPI.history,
-                    sysText=sysText, reqText=reqText, inpText=inpText, model_select='auto',
+                    session_id='0', history=openaiAPI.history, chat_class='chat',
+                    sysText=sysText, reqText=reqText, inpText=inpText, filePath=[],
+                    model_select='auto',
                     inpLang='ja', outLang='ja', )
         #print('output :', res_txt + res_path, '(' + res_api + ')', res_name, )
         if (res_txt != ''):

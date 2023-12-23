@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
 
 
-    outFile = u'gijiroku/9.結果テキスト_sjis.txt'
+    outFile = 'gijiroku/9.結果テキスト_sjis.txt'
     if (os.path.exists(outFile)):
         os.remove(outFile)
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
             if (txt != ''):
 
                 f = txt.replace(' ','_')
-                f = f.replace(u'　','_')
+                f = f.replace('　','_')
                 f = f.replace('"','_')
                 f = f.replace('$','_')
                 f = f.replace('%','_')
@@ -82,7 +82,7 @@ if __name__ == '__main__':
                 f = f.replace('<','_')
                 f = f.replace('>','_')
                 if (len(f)>100):
-                    f = f[:100] + u'…'
+                    f = f[:100] + '…'
 
                 f1 = 'gijiroku/mp3/' + fileId[:-4]                                   + '.mp3'
                 f2 = 'gijiroku/mp3/' + fileId[:-4].replace('julius.','') + '.[' + f + '].mp3'

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -85,7 +85,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -275,7 +275,7 @@ class proc_telework:
 
                 qLog.log('info', self.proc_id, proc_text, display=True, )
 
-                if (proc_text.find(u'リセット') >=0):
+                if (proc_text.find('リセット') >=0):
                     self.telework_run = False
                     self.telework_end = False
                     self.check_time   = 0
@@ -284,8 +284,8 @@ class proc_telework:
                         qFunc.statusSet(qBusy_d_telework, False)
 
                 elif (proc_text.lower() == '_telework_stop_') \
-                  or (proc_text.find(u'テレワーク') >=0) and (proc_text.find(u'停止') >=0) \
-                  or (proc_text.find(u'テレワーク') >=0) and (proc_text.find(u'終了') >=0):
+                  or (proc_text.find('テレワーク') >=0) and (proc_text.find('停止') >=0) \
+                  or (proc_text.find('テレワーク') >=0) and (proc_text.find('終了') >=0):
                     if (self.telework_run == True):
                         self.telework_run = False
                         self.telework_end = True
@@ -294,7 +294,7 @@ class proc_telework:
 
                 elif (proc_text.lower() == '_telework_start_') \
                   or (proc_text.lower() == '_telework_restart_') \
-                  or (proc_text.find(u'テレワーク') >=0) and (proc_text.find(u'開始') >=0):
+                  or (proc_text.find('テレワーク') >=0) and (proc_text.find('開始') >=0):
                     self.telework_run = True
                     self.telework_end = False
                     self.check_time   = 0
@@ -507,7 +507,7 @@ class proc_telework:
             textcolor = (0,255,0)
             if (len(self.camera_img) != 0):
                 if (self.face_img is None):
-                    txt += u' 離席中'
+                    txt += ' 離席中'
                     textcolor = (255,0,255)
 
             if (self.font192_default is None):
@@ -585,7 +585,7 @@ if __name__ == '__main__':
     # テスト実行
     if (len(sys.argv) < 2):
 
-        telework_thread.put(['control', u'テレワーク開始'])
+        telework_thread.put(['control', 'テレワーク開始'])
 
         chktime = time.time()
         while ((time.time() - chktime) < 150):
@@ -607,7 +607,7 @@ if __name__ == '__main__':
 
             time.sleep(1.00)
 
-        telework_thread.put(['control', u'テレワーク終了'])
+        telework_thread.put(['control', 'テレワーク終了'])
 
         chktime = time.time()
         while ((time.time() - chktime) < 30):

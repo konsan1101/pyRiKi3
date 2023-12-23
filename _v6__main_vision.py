@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -111,7 +111,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -540,7 +540,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「カメラ制御」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「カメラ制御」の機能が有効になりました。', 'wait':0, })
 
             if (controlv_thread is not None) and (controlv_switch != 'on'):
                 controlv_thread.abort()
@@ -567,7 +567,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「画面表示」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「画面表示」の機能が有効になりました。', 'wait':0, })
 
             if (overlay_thread is not None) and (overlay_switch != 'on'):
                 overlay_thread.abort()
@@ -587,7 +587,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「カメラ１入力」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「カメラ１入力」の機能が有効になりました。', 'wait':0, })
 
             if (camera_thread1 is not None) and (camera_switch1 != 'on'):
                 camera_thread1.abort()
@@ -607,7 +607,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「カメラ２入力」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「カメラ２入力」の機能が有効になりました。', 'wait':0, })
 
             if (camera_thread2 is not None) and (camera_switch2 != 'on'):
                 camera_thread2.abort()
@@ -629,7 +629,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「認識文字の表示」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「認識文字の表示」の機能が有効になりました。', 'wait':0, })
 
             if (txt2img_thread is not None) and (txt2img_switch != 'on'):
                 txt2img_thread.abort()
@@ -649,7 +649,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ＱＲコード認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＱＲコード認識」の機能が有効になりました。', 'wait':0, })
 
             if (cvreader_thread is not None) and (cvreader_switch != 'on'):
                 cvreader_thread.abort()
@@ -669,7 +669,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「オープンＣＶ画像認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「オープンＣＶ画像認識」の機能が有効になりました。', 'wait':0, })
 
             if (cvdetect_thread1 is not None) and (cvdetect_switch1 != 'on'):
                 cvdetect_thread1.abort()
@@ -705,7 +705,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「画像認識（ｙｏｌｏ）」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「画像認識（ｙｏｌｏ）」の機能が有効になりました。', 'wait':0, })
 
             if (cv2dnn_yolo_thread is not None) and (cv2dnn_yolo_switch != 'on'):
                 cv2dnn_yolo_thread.abort()
@@ -727,7 +727,7 @@ class main_vision:
                     if (i == 0):
                         if (self.runMode == 'debug') \
                         or (self.runMode == 'live'):
-                            speechs.append({ 'text':u'「画像認識（ｓｓｄ）」の機能が有効になりました。', 'wait':0, })
+                            speechs.append({ 'text':'「画像認識（ｓｓｄ）」の機能が有効になりました。', 'wait':0, })
 
             for i in range(cv2dnn_ssd_max):
                 if (cv2dnn_ssd_thread[i] is not None) and (cv2dnn_ssd_switch != 'on'):
@@ -748,7 +748,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「写真認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「写真認識」の機能が有効になりました。', 'wait':0, })
 
             if (vin2jpg_thread is not None) and (vin2jpg_switch != 'on'):
                 vin2jpg_thread.abort()
@@ -768,7 +768,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ＡＩ画像認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＡＩ画像認識」の機能が有効になりました。', 'wait':0, })
 
             if (coreCV_thread is not None) and (coreCV_switch != 'on'):
                 coreCV_thread.abort()
@@ -791,7 +791,7 @@ class main_vision:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「受付監視」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「受付監視」の機能が有効になりました。', 'wait':0, })
 
             if (reception_thread is not None) and (reception_switch != 'on'):
                 reception_thread.abort()
@@ -812,7 +812,7 @@ class main_vision:
                 or (self.runMode == 'camera') \
                 or (self.runMode == 'mirror'):
                     speechs = []
-                    speechs.append({ 'text':u'「カメラ機能」の準備が完了しました。', 'wait':0, })
+                    speechs.append({ 'text':'「カメラ機能」の準備が完了しました。', 'wait':0, })
                     qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             # レディ設定

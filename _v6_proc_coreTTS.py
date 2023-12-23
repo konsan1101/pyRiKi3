@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -76,7 +76,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -330,7 +330,7 @@ class proc_coreTTS:
 
                                     # ログ
                                     if (self.runMode == 'debug') or (not self.micDev.isdigit()):
-                                        qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                        qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # 結果出力
                                     if (cn_s.qsize() < 99):
@@ -530,7 +530,7 @@ if __name__ == '__main__':
     # テスト実行
     if (len(sys.argv) < 2):
 
-        qRiKi.tts('00', u'ja,おはようございます', )
+        qRiKi.tts('00', 'ja,おはようございます', )
 
         chktime = time.time()
         while ((time.time() - chktime) < 15):

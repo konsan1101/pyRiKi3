@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -405,7 +405,7 @@ class main_telop:
 
                                     # ログ
                                     #if (self.runMode == 'debug') or (not self.micDev.isdigit()):
-                                    #    qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                    #    qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # 結果出力
                                     #if (cn_s.qsize() < 99):

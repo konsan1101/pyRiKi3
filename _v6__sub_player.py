@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -92,7 +92,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -633,7 +633,7 @@ class main_player:
                 self.sub_alive()
 
             # 選択アナウンス
-            if (control.find(u'動画') >=0) and (control.find(u'メニュー') >=0):
+            if (control.find('動画') >=0) and (control.find('メニュー') >=0):
                 last_menu = time.time()
             if (control.lower() >= '01') and (control.lower() <= '09'):
                 last_menu = 0
@@ -644,7 +644,7 @@ class main_player:
                         onece = False
 
                         speechs = []
-                        speechs.append({ 'text':u'画面表示位置を指定して再生はいかがですか？', 'wait':0, })
+                        speechs.append({ 'text':'画面表示位置を指定して再生はいかがですか？', 'wait':0, })
                         qRiKi.speech(id='speech', speechs=speechs, lang='', )
 
             # 処理
@@ -697,7 +697,7 @@ class main_player:
 
     # 処理
     def sub_proc(self, cn_s, proc_text, ):
-        if (proc_text.find(u'リセット') >=0):
+        if (proc_text.find('リセット') >=0):
             #self.sub_stop(proc_text, )
             self.sub_stop('_stop_', )
 
@@ -726,14 +726,14 @@ class main_player:
             self.sub_start(cn_s, proc_text, self.path_play['03'], panel='37', vol=0  , order='normal', loop=99, )
             self.sub_start(cn_s, proc_text, self.path_play['04'], panel='46', vol=0  , order='normal', loop=99, )
 
-        elif ((proc_text.find(u'動画') >=0) and (proc_text.find(u'メニュー') >=0)) or (proc_text.lower() == '_test_'):
+        elif ((proc_text.find('動画') >=0) and (proc_text.find('メニュー') >=0)) or (proc_text.lower() == '_test_'):
             #self.sub_stop('_stop_', )
             self.sub_start(cn_s, proc_text, self.path_play['00'], panel='0' , vol=0  , order='normal', loop=99, overText1='', )
             self.sub_start(cn_s, proc_text, self.path_play['01'], panel='1-', vol=0  , order='normal', loop=99, overText1='01', )
             self.sub_start(cn_s, proc_text, self.path_play['02'], panel='2-', vol=0  , order='normal', loop=99, overText1='02', )
             self.sub_start(cn_s, proc_text, self.path_play['03'], panel='3-', vol=0  , order='normal', loop=99, overText1='03', )
             self.sub_start(cn_s, proc_text, self.path_play['04'], panel='4-', vol=0  , order='normal', loop=99, overText1='04', )
-            if (proc_text.find(u'動画') >=0) and (proc_text.find(u'メニュー') >=0):
+            if (proc_text.find('動画') >=0) and (proc_text.find('メニュー') >=0):
                 self.sub_start(cn_s, proc_text, self.path_play['05'], panel='5-', vol=0  , order='normal', loop=99, overText1='05', )
             if (proc_text.lower() == '_test_'):
                 self.sub_start(cn_s, proc_text, self.path_play['05'], panel='5-', vol=int(self.play_volume), order='top', loop=99, overText1='05', )
@@ -1007,12 +1007,12 @@ if __name__ == '__main__':
             if  ((time.time() - main_start) > 1):
                 if (onece == True):
                     onece = False
-                    #t = u'C:/Users/Public/_m4v__Clip/Perfume/Perfume_FLASH.m4v'
-                    #t = u'C:/Users/Public/_m4v__Clip/Perfume'
-                    #t = u'_demo0-'   # base + center
-                    #t = u'_demo1397' # base + 1,3,9,7
-                    #t = u'_demo1234' # base + 1234,6789
-                    t = u'_test_'      # base + 1-9
+                    #t = 'C:/Users/Public/_m4v__Clip/Perfume/Perfume_FLASH.m4v'
+                    #t = 'C:/Users/Public/_m4v__Clip/Perfume'
+                    #t = '_demo0-'   # base + center
+                    #t = '_demo1397' # base + 1,3,9,7
+                    #t = '_demo1234' # base + 1234,6789
+                    t = '_test_'      # base + 1-9
                     qLog.log('debug', main_id, t, )
                     qFunc.txtsWrite(qCtrl_control_self ,txts=[t], encoding='utf-8', exclusive=True, mode='w', )
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -74,7 +74,7 @@ class SpeechAPI:
                 lang = 'it-IT'
             elif (outLang == 'pt'):
                 lang = 'pt-BR'
-            elif (outLang == 'ru'):
+            elif (outLang == 'r'):
                 lang = 'ru-RU'
             elif (outLang == 'tr'):
                 lang = 'tr-TR'
@@ -163,7 +163,7 @@ if __name__ == '__main__':
             sox.terminate()
             sox = None
 
-            text = u'こんにちは'
+            text = 'こんにちは'
             file = 'temp_voice.wav'
 
             res, api = winosAPI.vocalize(outText=text, outLang='ja', outFile=file)

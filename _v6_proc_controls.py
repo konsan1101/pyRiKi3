@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -89,7 +89,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -391,7 +391,7 @@ class proc_controls:
 
                                     # ログ
                                     #if (self.runMode == 'debug') or (not self.micDev.isdigit()):
-                                    #    qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                    #    qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # 結果出力
                                     if (cn_s.qsize() < 99):
@@ -496,11 +496,11 @@ class proc_controls:
             fproc = qFunc.statusCheck(qRdy__s_fproc)
         if (fproc == True) or (proc_text[:1] == '_'):
 
-            qLog.log('warning', self.proc_id, u'Fource Cmd  【' + proc_text + u'】', )
+            qLog.log('warning', self.proc_id, 'Fource Cmd  【' + proc_text + '】', )
             fource_run = False
 
             # システム制御
-            if   (proc_text.find(u'リセット') >= 0):
+            if   (proc_text.find('リセット') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 out_name  = 'control'
@@ -510,8 +510,8 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_vision , txts=[out_value], encoding='utf-8', exclusive=True, mode='w', )
                 qFunc.txtsWrite(qCtrl_control_desktop, txts=[out_value], encoding='utf-8', exclusive=True, mode='w', )
 
-            if  ((proc_text.find(u'システム') >= 0) and (proc_text.find(u'終了') >= 0)) \
-            or  (proc_text == u'バルス'):
+            if  ((proc_text.find('システム') >= 0) and (proc_text.find('終了') >= 0)) \
+            or  (proc_text == 'バルス'):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 out_name  = 'control'
@@ -519,8 +519,8 @@ class proc_controls:
                 cn_s.put([out_name, out_value])
                 qFunc.txtsWrite(qCtrl_control_kernel , txts=[out_value], encoding='utf-8', exclusive=True, mode='w', )
 
-            if   (proc_text.find(u'リブート') >= 0) \
-            or   (proc_text.find(u'再起動') >= 0):
+            if   (proc_text.find('リブート') >= 0) \
+            or   (proc_text.find('再起動') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 out_name  = 'control'
@@ -532,8 +532,8 @@ class proc_controls:
                 self.run_player  = False
                 self.run_telop   = False
 
-            if   (proc_text.find(u'操作') >= 0) \
-            and ((proc_text.find(u'画面') >= 0) or (proc_text.find(u'パネル') >= 0)):
+            if   (proc_text.find('操作') >= 0) \
+            and ((proc_text.find('画面') >= 0) or (proc_text.find('パネル') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 out_name  = 'control'
@@ -542,8 +542,8 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel , txts=[out_value], encoding='utf-8', exclusive=True, mode='w', )
 
             # 機能制御
-            if   (proc_text.find(u'画面') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if   (proc_text.find('画面') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_desktop_begin_'], encoding='utf-8', exclusive=True, mode='w', )
@@ -552,7 +552,7 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_vision_begin_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_vision  = True
 
-            if   (proc_text.find(u'画面') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('画面') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_desktop_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
@@ -561,34 +561,34 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_vision_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_vision  = False
 
-            if   (proc_text.find(u'ビジョン') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if   (proc_text.find('ビジョン') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_vision_begin_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_vision = True
 
-            if   (proc_text.find(u'ビジョン') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('ビジョン') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_vision_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_vision = False
 
-            if   (proc_text.find(u'デスクトップ') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if   (proc_text.find('デスクトップ') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_desktop_begin_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_desktop = True
 
-            if   (proc_text.find(u'デスクトップ') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('デスクトップ') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_desktop_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_desktop = False
 
-            if  ((proc_text.find(u'ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if  ((proc_text.find('ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # BGM 起動
@@ -598,8 +598,8 @@ class proc_controls:
                 qFunc.statusWait_false(qCtrl_control_bgm, 5)
                 qFunc.txtsWrite(qCtrl_control_bgm ,txts=['_start_'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if  ((proc_text.find(u'ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
-            and  (proc_text.find(u'終了') >= 0):
+            if  ((proc_text.find('ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
+            and  (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # BGM 停止
@@ -610,16 +610,16 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_bgm_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_bgm = False
 
-            if  ((proc_text.find(u'ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
-            and ((proc_text.find(u'停止') >= 0) or (proc_text.find(u'ストップ') >= 0)):
+            if  ((proc_text.find('ＢＧＭ') >= 0) or (proc_text.find('BGM') >= 0)) \
+            and ((proc_text.find('停止') >= 0) or (proc_text.find('ストップ') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # BGM 停止
                 qFunc.statusWait_false(qCtrl_control_bgm, 5)
                 qFunc.txtsWrite(qCtrl_control_bgm ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if   (proc_text.find(u'動画') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if   (proc_text.find('動画') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # 動画 起動
@@ -629,9 +629,9 @@ class proc_controls:
                 #qFunc.statusWait_false(qCtrl_control_player, 5)
                 #qFunc.txtsWrite(qCtrl_control_player ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
                 qFunc.statusWait_false(qCtrl_control_player, 5)
-                qFunc.txtsWrite(qCtrl_control_player ,txts=[u'動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
+                qFunc.txtsWrite(qCtrl_control_player ,txts=['動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if   (proc_text.find(u'動画') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('動画') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # 動画 停止
@@ -642,16 +642,16 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_player_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_player = False
 
-            if   (proc_text.find(u'動画') >= 0) \
-            and ((proc_text.find(u'停止') >= 0) or (proc_text.find(u'ストップ') >= 0)):
+            if   (proc_text.find('動画') >= 0) \
+            and ((proc_text.find('停止') >= 0) or (proc_text.find('ストップ') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # 動画 停止
                 qFunc.statusWait_false(qCtrl_control_player, 5)
                 qFunc.txtsWrite(qCtrl_control_player ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if  ((proc_text.find(u'ブラウザ') >= 0) or (proc_text.find(u'ウェブ') >= 0)) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if  ((proc_text.find('ブラウザ') >= 0) or (proc_text.find('ウェブ') >= 0)) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # ブラウザ 起動
@@ -661,8 +661,8 @@ class proc_controls:
                 qFunc.statusWait_false(qCtrl_control_browser, 5)
                 qFunc.txtsWrite(qCtrl_control_browser ,txts=['_start_'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if  ((proc_text.find(u'ブラウザ') >= 0) or (proc_text.find(u'ウェブ') >= 0)) \
-            and  (proc_text.find(u'終了') >= 0):
+            if  ((proc_text.find('ブラウザ') >= 0) or (proc_text.find('ウェブ') >= 0)) \
+            and  (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # ブラウザ 閉じる
@@ -673,23 +673,23 @@ class proc_controls:
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_browser_end_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_browser = False
 
-            if  ((proc_text.find(u'ブラウザ') >= 0) or (proc_text.find(u'ウェブ') >= 0)) \
-            and ((proc_text.find(u'停止') >= 0) or (proc_text.find(u'ストップ') >= 0)):
+            if  ((proc_text.find('ブラウザ') >= 0) or (proc_text.find('ウェブ') >= 0)) \
+            and ((proc_text.find('停止') >= 0) or (proc_text.find('ストップ') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # ブラウザ 閉じる
                 qFunc.statusWait_false(qCtrl_control_browser, 5)
                 qFunc.txtsWrite(qCtrl_control_browser ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
 
-            if   (proc_text.find(u'テロップ') >= 0) \
-            and ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0)):
+            if   (proc_text.find('テロップ') >= 0) \
+            and ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0)):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # テロップ 起動
                 qFunc.txtsWrite(qCtrl_control_kernel ,txts=['_telop_begin_'], encoding='utf-8', exclusive=True, mode='w', )
                 self.run_telop = True
 
-            if   (proc_text.find(u'テロップ') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('テロップ') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 # テロップ 終了
@@ -698,8 +698,8 @@ class proc_controls:
                 self.run_telop = False
 
             # 外部プログラム開始 qExt_pg_start
-            if  ((proc_text.find(u'プログラム') >= 0) \
-            and  ((proc_text.find(u'開始') >= 0) or (proc_text.find(u'起動') >= 0))):
+            if  ((proc_text.find('プログラム') >= 0) \
+            and  ((proc_text.find('開始') >= 0) or (proc_text.find('起動') >= 0))):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 if (os.name == 'nt'):
@@ -708,7 +708,7 @@ class proc_controls:
                                       #shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, )
 
             # 外部プログラム終了 qExt_pg_stop
-            if   (proc_text.find(u'プログラム') >= 0) and (proc_text.find(u'終了') >= 0):
+            if   (proc_text.find('プログラム') >= 0) and (proc_text.find('終了') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 fource_run = True
                 if (os.name == 'nt'):
@@ -725,13 +725,13 @@ class proc_controls:
 
         # 動画向け特別コマンド
         if (self.run_player == True) \
-        and  (proc_text.find(u'動画') >=0) and (proc_text.find(u'メニュー') >=0):
+        and  (proc_text.find('動画') >=0) and (proc_text.find('メニュー') >=0):
             qFunc.statusSet(qRdy__s_force, False)
             # 動画 メニュー
             qFunc.statusWait_false(qCtrl_control_player, 5)
             qFunc.txtsWrite(qCtrl_control_player ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
             qFunc.statusWait_false(qCtrl_control_player, 5)
-            qFunc.txtsWrite(qCtrl_control_player ,txts=[u'動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
+            qFunc.txtsWrite(qCtrl_control_player ,txts=['動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
             
             cn_s.put(['_guide_', proc_text])
             self.last_text = proc_text
@@ -769,12 +769,12 @@ class proc_controls:
 
         # 動画　特別コマンド
         if  (self.run_player == True) \
-        and (proc_text.find(u'動画') >=0) and (proc_text.find(u'メニュー') >=0):
+        and (proc_text.find('動画') >=0) and (proc_text.find('メニュー') >=0):
             # 動画 メニュー
             qFunc.statusWait_false(qCtrl_control_player, 5)
             qFunc.txtsWrite(qCtrl_control_player ,txts=['_stop_'], encoding='utf-8', exclusive=True, mode='w', )
             qFunc.statusWait_false(qCtrl_control_player, 5)
-            qFunc.txtsWrite(qCtrl_control_player ,txts=[u'動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
+            qFunc.txtsWrite(qCtrl_control_player ,txts=['動画メニュー'], encoding='utf-8', exclusive=True, mode='w', )
             
             cn_s.put(['_guide_', proc_text])
             self.last_text = proc_text
@@ -797,7 +797,7 @@ class proc_controls:
             return
 
         # 画面操作
-        if (proc_text.find(u'メイン') >= 0) and (proc_text.find(u'スクリーン') >= 0):
+        if (proc_text.find('メイン') >= 0) and (proc_text.find('スクリーン') >= 0):
             qGUI.keyDown('ctrlleft')
             qGUI.keyDown('winleft')
             qGUI.press('left')
@@ -808,14 +808,14 @@ class proc_controls:
             qGUI.keyUp('winleft')
             qGUI.keyUp('ctrlleft')
 
-        if (proc_text.find(u'サブ') >= 0) and (proc_text.find(u'スクリーン') >= 0):
+        if (proc_text.find('サブ') >= 0) and (proc_text.find('スクリーン') >= 0):
             qGUI.keyDown('ctrlleft')
             qGUI.keyDown('winleft')
             qGUI.press('right')
             qGUI.keyUp('winleft')
             qGUI.keyUp('ctrlleft')
 
-        if (proc_text.find(u'スクリーン') >= 0) and (proc_text.find(u'キーボード') >= 0):
+        if (proc_text.find('スクリーン') >= 0) and (proc_text.find('キーボード') >= 0):
             qGUI.keyDown('ctrlleft')
             qGUI.keyDown('winleft')
             qGUI.press('o')
@@ -823,12 +823,12 @@ class proc_controls:
             qGUI.keyUp('ctrlleft')
 
         # キーボード操作
-        if (proc_text[-3:] == u'を入力'):
+        if (proc_text[-3:] == 'を入力'):
             qGUI.sendKey(proc_text[:-3],cr=True, lf=False)
-        elif (proc_text[-2:] == u'入力'):
+        elif (proc_text[-2:] == '入力'):
             qGUI.sendKey(proc_text[:-2],cr=True, lf=False)
 
-        if (proc_text == u'改行') or (proc_text.lower() == 'enter'):
+        if (proc_text == '改行') or (proc_text.lower() == 'enter'):
             qGUI.press('enter')
 
         if (proc_text.lower() == 'f1') or (proc_text.lower() == 'f 1'):
@@ -856,10 +856,10 @@ class proc_controls:
         if (proc_text.lower() == 'f12') or (proc_text.lower() == 'f 12'):
             qGUI.press('f12')
 
-        if (proc_text == u'ポーズ') \
-        or (proc_text == u'閉じる'):
+        if (proc_text == 'ポーズ') \
+        or (proc_text == '閉じる'):
             qGUI.press('pause')
-        if (proc_text[-3:] == u'を検索'):
+        if (proc_text[-3:] == 'を検索'):
             qGUI.sendKey(proc_text[:-3],cr=False, lf=False)
             qGUI.press('f9')
 

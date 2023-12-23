@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -71,7 +71,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -305,7 +305,7 @@ class proc_controld:
 
                                     # ログ
                                     #if (self.runMode == 'debug') or (not self.micDev.isdigit()):
-                                    #    qLog.log('info', self.proc_id, '' + proc_name + u' → ' + work_name, display=self.logDisp,)
+                                    #    qLog.log('info', self.proc_id, '' + proc_name + ' → ' + work_name, display=self.logDisp,)
 
                                     # 結果出力
                                     #if (cn_s.qsize() < 99):
@@ -383,14 +383,14 @@ class proc_controld:
         if (fproc == True) or (proc_text[:1] == '_'):
 
             # システム制御
-            if (proc_text.find(u'リセット') >= 0):
+            if (proc_text.find('リセット') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 out_name  = 'control'
                 out_value = '_reset_'
                 cn_s.put([out_name, out_value])
 
-            elif ((proc_text.find(u'システム') >= 0) and (proc_text.find(u'終了') >= 0)) \
-              or  (proc_text == u'バルス'):
+            elif ((proc_text.find('システム') >= 0) and (proc_text.find('終了') >= 0)) \
+              or  (proc_text == 'バルス'):
                 qFunc.statusSet(qRdy__s_force, False)
                 out_name  = 'control'
                 out_value = '_end_'
@@ -402,8 +402,8 @@ class proc_controld:
             if   (proc_text.lower() == '_rec_start_') \
               or (proc_text.lower() == '_rec_stop_') \
               or (proc_text.lower() == '_rec_restart_') \
-              or (proc_text.find(u'記録') >= 0) \
-              or (proc_text.find(u'録画') >= 0):
+              or (proc_text.find('記録') >= 0) \
+              or (proc_text.find('録画') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 #print('controld', proc_text)
                 cn_s.put(['recorder', proc_text])
@@ -413,16 +413,16 @@ class proc_controld:
             if   (proc_text.lower() == '_telework_start_') \
               or (proc_text.lower() == '_telework_stop_') \
               or (proc_text.lower() == '_telwork_restart_') \
-              or (proc_text.find(u'テレワーク') >= 0):
+              or (proc_text.find('テレワーク') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 #print('controld', proc_text)
                 cn_s.put(['telework', proc_text])
                 cn_s.put(['_guide_', proc_text])
 
             # 画面キャプチャ
-            if   (proc_text.find(u'キャプチャ') >= 0) \
-              or (proc_text.find(u'スクリーンショット') >= 0) \
-              or (proc_text.find(u'ハードコピー') >= 0):
+            if   (proc_text.find('キャプチャ') >= 0) \
+              or (proc_text.find('スクリーンショット') >= 0) \
+              or (proc_text.find('ハードコピー') >= 0):
                 qFunc.statusSet(qRdy__s_force, False)
                 out_name  = 'control'
                 out_value = '_capture_'

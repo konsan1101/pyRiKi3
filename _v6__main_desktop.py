@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -101,7 +101,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -405,7 +405,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「デスクトップ制御」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「デスクトップ制御」の機能が有効になりました。', 'wait':0, })
 
             if (controld_thread is not None) and (controld_switch != 'on'):
                 controld_thread.abort()
@@ -425,7 +425,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「デスクトップ入力」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「デスクトップ入力」の機能が有効になりました。', 'wait':0, })
 
             if (capture_thread is not None) and (capture_switch != 'on'):
                 capture_thread.abort()
@@ -445,7 +445,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「画面ＱＲコード認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「画面ＱＲコード認識」の機能が有効になりました。', 'wait':0, })
 
             if (cvreader_thread is not None) and (cvreader_switch != 'on'):
                 cvreader_thread.abort()
@@ -464,7 +464,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「デスクトップ記録」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「デスクトップ記録」の機能が有効になりました。', 'wait':0, })
 
                 # 記録開始
                 if (self.runMode == 'recorder'):
@@ -487,7 +487,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「テレワーク記録」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「テレワーク記録」の機能が有効になりました。', 'wait':0, })
 
                 # 記録開始
                 if (self.runMode == 'telework'):
@@ -510,7 +510,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ブロブ連携」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ブロブ連携」の機能が有効になりました。', 'wait':0, })
 
             if (pointer_thread is not None) and (pointer_switch != 'on'):
                 pointer_thread.abort()
@@ -529,7 +529,7 @@ class main_desktop:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「マウスポインタ表示」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「マウスポインタ表示」の機能が有効になりました。', 'wait':0, })
 
             if (pointer_thread is not None) and (pointer_switch != 'on'):
                 pointer_thread.abort()
@@ -545,7 +545,7 @@ class main_desktop:
                 if   (self.runMode == 'debug') \
                 or   (self.runMode == 'live'):
                     speechs = []
-                    speechs.append({ 'text':u'「デスクトップ制御」の準備が完了しました。', 'wait':0, })
+                    speechs.append({ 'text':'「デスクトップ制御」の準備が完了しました。', 'wait':0, })
                     qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             # レディー設定
@@ -934,8 +934,8 @@ if __name__ == '__main__':
         if (control.lower() == '_rec_start_') \
         or (control.lower() == '_rec_stop_') \
         or (control.lower() == '_rec_restart_') \
-        or (control.find(u'記録') >= 0) \
-        or (control.find(u'録画') >= 0):
+        or (control.find('記録') >= 0) \
+        or (control.find('録画') >= 0):
             main_core.put(['recorder', control])
             control = ''
 
@@ -944,7 +944,7 @@ if __name__ == '__main__':
         if (control.lower() == '_telework_start_') \
         or (control.lower() == '_telework_stop_') \
         or (control.lower() == '_telework_restart_') \
-        or (control.find(u'テレワーク') >= 0):
+        or (control.find('テレワーク') >= 0):
             main_core.put(['telework', control])
             control = ''
 

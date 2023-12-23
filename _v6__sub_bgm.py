@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -83,7 +83,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -406,7 +406,7 @@ class main_bgm:
                             onece = False
 
                             speechs = []
-                            speechs.append({ 'text':u'プレイリストの再生はいかがですか？', 'wait':0, })
+                            speechs.append({ 'text':'プレイリストの再生はいかがですか？', 'wait':0, })
                             qRiKi.speech(id='speech', speechs=speechs, lang='', )
 
             # ＢＧＭモード
@@ -477,7 +477,7 @@ class main_bgm:
     # 処理
     def sub_proc(self, proc_text, ):
 
-        if (proc_text.find(u'リセット') >=0):
+        if (proc_text.find('リセット') >=0):
 
             # 停止
             if (self.bgm_id is not None):
@@ -485,10 +485,10 @@ class main_bgm:
                 self.sub_stop('_stop_', )
 
         elif (proc_text.lower() == '_stop_') \
-          or (proc_text.find(u'BGM') >=0)   and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'BGM') >=0)   and (proc_text.find(u'終了') >=0) \
-          or (proc_text.find(u'ＢＧＭ') >=0) and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'ＢＧＭ') >=0) and (proc_text.find(u'終了') >=0):
+          or (proc_text.find('BGM') >=0)   and (proc_text.find('停止') >=0) \
+          or (proc_text.find('BGM') >=0)   and (proc_text.find('終了') >=0) \
+          or (proc_text.find('ＢＧＭ') >=0) and (proc_text.find('停止') >=0) \
+          or (proc_text.find('ＢＧＭ') >=0) and (proc_text.find('終了') >=0):
 
             # 停止
             if (self.bgm_id is not None):
@@ -496,10 +496,10 @@ class main_bgm:
                 self.sub_stop('_stop_', )
 
         elif (proc_text.lower() == '_start_') \
-          or (proc_text.find(u'BGM') >=0)   and (proc_text.find(u'開始') >=0) \
-          or (proc_text.find(u'BGM') >=0)   and (proc_text.find(u'再生') >=0) \
-          or (proc_text.find(u'ＢＧＭ') >=0) and (proc_text.find(u'開始') >=0) \
-          or (proc_text.find(u'ＢＧＭ') >=0) and (proc_text.find(u'再生') >=0):
+          or (proc_text.find('BGM') >=0)   and (proc_text.find('開始') >=0) \
+          or (proc_text.find('BGM') >=0)   and (proc_text.find('再生') >=0) \
+          or (proc_text.find('ＢＧＭ') >=0) and (proc_text.find('開始') >=0) \
+          or (proc_text.find('ＢＧＭ') >=0) and (proc_text.find('再生') >=0):
 
             # 停止
             if (self.bgm_id is not None):
@@ -517,7 +517,7 @@ class main_bgm:
             # ＢＧＭ実行以外
             if (self.runMode != 'bgm'):
 
-                if  (txt.find(u'プレイリスト') >= 0) or (txt.find('playlist') >= 0) or (txt.find('bgm') >= 0):
+                if  (txt.find('プレイリスト') >= 0) or (txt.find('playlist') >= 0) or (txt.find('bgm') >= 0):
 
                     if   (txt.find('01') >= 0) or (txt.find('1') >= 0):
                         procBgm =  '_01_'
@@ -531,25 +531,25 @@ class main_bgm:
                         procBgm =  '_05_'
                     elif (txt.find('06') >= 0) or (txt.find('6') >= 0):
                         procBgm =  '_06_'
-                    elif (txt.find('0') >= 0) or (txt.find(u'ゼロ') >= 0):
+                    elif (txt.find('0') >= 0) or (txt.find('ゼロ') >= 0):
                         procBgm =  '_00_'
-                    elif (txt.find(u'リスト') >= 0) or (txt.find('list') >= 0):
+                    elif (txt.find('リスト') >= 0) or (txt.find('list') >= 0):
                         speechs = []
-                        #speechs.append({ 'text':u'プレイリストゼロは、自作ＢＧＭです。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト１は、お気に入り音楽です。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト２は、「BABYMETAL」です。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト３は、「perfume」です。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト４は、「きゃりーぱみゅぱみゅ」です。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト５は、「ONE OK ROCK」です。', 'wait':0, })
-                        #speechs.append({ 'text':u'プレイリスト６は、「SEKAI NO OWARI」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリストゼロは、「' + self.text['00'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト１は、　「' + self.text['01'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト２は、　「' + self.text['02'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト３は、　「' + self.text['03'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト４は、　「' + self.text['04'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト５は、　「' + self.text['05'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリスト６は、　「' + self.text['06'] + u'」です。', 'wait':0, })
-                        speechs.append({ 'text':u'プレイリストを再生しますか？', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリストゼロは、自作ＢＧＭです。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト１は、お気に入り音楽です。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト２は、「BABYMETAL」です。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト３は、「perfume」です。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト４は、「きゃりーぱみゅぱみゅ」です。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト５は、「ONE OK ROCK」です。', 'wait':0, })
+                        #speechs.append({ 'text':'プレイリスト６は、「SEKAI NO OWARI」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリストゼロは、「' + self.text['00'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト１は、　「' + self.text['01'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト２は、　「' + self.text['02'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト３は、　「' + self.text['03'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト４は、　「' + self.text['04'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト５は、　「' + self.text['05'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリスト６は、　「' + self.text['06'] + '」です。', 'wait':0, })
+                        speechs.append({ 'text':'プレイリストを再生しますか？', 'wait':0, })
                         qRiKi.speech(id='speech', speechs=speechs, lang='', )
 
             # ＢＧＭ実行
@@ -610,34 +610,34 @@ class main_bgm:
             if (proc_text.lower() == '_start_') \
             or (proc_text.lower() == 'bgm') \
             or (proc_text.lower() == '_00_'):
-                #self.bgm_file = u'_VLC_GB_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_GB_プレイリスト.xspf'
                 self.bgm_file = self.file['00']
                 if (self.engine == 'vlc') and (self.runMode != 'debug'):
                     self.bgm_parm = '--qt-start-minimized'
                     #self.bgm_parm = '--qt-minimal-view'
 
             elif (proc_text.lower() == '_01_'):
-                #self.bgm_file = u'_VLC_etc_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_etc_プレイリスト.xspf'
                 self.bgm_file = self.file['01']
 
             elif (proc_text.lower() == '_02_'):
-                #self.bgm_file = u'_VLC_BABYMETAL_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_BABYMETAL_プレイリスト.xspf'
                 self.bgm_file = self.file['02']
 
             elif (proc_text.lower() == '_03_'):
-                #self.bgm_file = u'_VLC_Perfume_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_Perfume_プレイリスト.xspf'
                 self.bgm_file = self.file['03']
 
             elif (proc_text.lower() == '_04_'):
-                #self.bgm_file = u'_VLC_きゃりーぱみゅぱみゅ_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_きゃりーぱみゅぱみゅ_プレイリスト.xspf'
                 self.bgm_file = self.file['04']
 
             elif (proc_text.lower() == '_05_'):
-                #self.bgm_file = u'_VLC_ワンオク_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_ワンオク_プレイリスト.xspf'
                 self.bgm_file = self.file['06']
 
             elif (proc_text.lower() == '_06_'):
-                #self.bgm_file = u'_VLC_セカオワ_プレイリスト.xspf'
+                #self.bgm_file = '_VLC_セカオワ_プレイリスト.xspf'
                 self.bgm_file = self.file['06']
 
         # ＢＧＭ実行
@@ -674,13 +674,13 @@ class main_bgm:
                 self.bgm_name = self.bgm_file
             else:
                 if (os.name == 'nt'):
-                    #self.bgm_name = u'C:\\Users\\Public\\' + self.bgm_file
+                    #self.bgm_name = 'C:\\Users\\Public\\' + self.bgm_file
                     self.bgm_name = self.path_winos + self.bgm_file
                 elif (qPLATFORM == 'darwin'):
-                    #self.bgm_name = u'/users/kondou/Documents/' + self.bgm_file
+                    #self.bgm_name = '/users/kondou/Documents/' + self.bgm_file
                     self.bgm_name = self.path_macos + self.bgm_file
                 else:
-                    #self.bgm_name = u'/users/kondou/Documents/' + self.bgm_file
+                    #self.bgm_name = '/users/kondou/Documents/' + self.bgm_file
                     self.bgm_name = self.path_linux + self.bgm_file
 
         # 開始
@@ -714,7 +714,7 @@ class main_bgm:
                 pass
 
             # ログ
-            qLog.log('info', self.proc_id, '' + u'play ' + self.bgm_file + ' start', display=True,)
+            qLog.log('info', self.proc_id, '' + 'play ' + self.bgm_file + ' start', display=True,)
 
     # 停止
     def sub_stop(self, proc_text, ):
@@ -726,7 +726,7 @@ class main_bgm:
             self.bgm_id = None
 
             # ログ
-            qLog.log('info', self.proc_id, '' + u'play ' + self.bgm_file + ' stop', display=True,)
+            qLog.log('info', self.proc_id, '' + 'play ' + self.bgm_file + ' stop', display=True,)
 
         # リセット
         #qFunc.kill('VLC', )

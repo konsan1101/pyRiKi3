@@ -1,6 +1,6 @@
 @ECHO OFF
 REM ------------------------------------------------
-REM COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+REM COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 REM This software is released under the MIT License.
 REM https://github.com/konsan1101
 REM Thank you for keeping the rules.
@@ -48,7 +48,7 @@ rem           pip  install --upgrade pip
     python -m pip  install --upgrade pip
     python -m pip  install --upgrade wheel
     python -m pip  install --upgrade setuptools
-    python -m pip  install --upgrade pyinstaller
+    python -m pip  install --upgrade pyinstaller==6.1.0
 
 ECHO;
 ECHO -------
@@ -102,6 +102,14 @@ rem python -m pip  install --upgrade opencv-contrib-python
     python -m pip  install --upgrade pyzbar
 
 ECHO;
+ECHO --------
+ECHO OpenAI
+ECHO --------
+    python -m pip  install --upgrade httpx==0.25.0
+    python -m pip  install --upgrade openai
+    python -m pip  install --upgrade tiktoken
+
+ECHO;
 ECHO ----------
 ECHO IBM Watson
 ECHO ----------
@@ -142,18 +150,11 @@ ECHO --------
     python -m pip  install --upgrade google-cloud-vision
     python -m pip  install --upgrade google-api-python-client
     python -m pip  install --upgrade gtts
-    python -m pip  install --upgrade googletrans
+rem    python -m pip  install --upgrade googletrans
     python -m pip  install --upgrade goslate
     python -m pip  install --upgrade ggtrans
     python -m pip  uninstall -y gtts-token
     python -m pip  install --upgrade gtts-token
-
-ECHO;
-ECHO --------
-ECHO OpenAI
-ECHO --------
-    python -m pip  install --upgrade openai
-    python -m pip  install --upgrade tiktoken
 
 
 

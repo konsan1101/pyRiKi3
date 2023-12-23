@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -85,7 +85,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -227,7 +227,7 @@ def qVoiceInput(useApi='free', inpLang='auto', inpFile='_sounds/_sound_hallo.wav
 
 
 
-def qTranslator_cacheFile(useApi='free', inpLang='ja', outLang='en', inpText=u'こんにちわ', ):
+def qTranslator_cacheFile(useApi='free', inpLang='ja', outLang='en', inpText='こんにちわ', ):
     if (inpText != '') and (inpText != '!'):
         f = qFunc.txt2filetxt(inpText)
         if (inpLang == 'ja'):
@@ -242,7 +242,7 @@ def qTranslator_cacheFile(useApi='free', inpLang='ja', outLang='en', inpText=u'�
 
     return ''
 
-def qTranslator_fromCache(useApi='free', inpLang='ja', outLang='en', inpText=u'こんにちわ', ):
+def qTranslator_fromCache(useApi='free', inpLang='ja', outLang='en', inpText='こんにちわ', ):
     cacheFile = qTranslator_cacheFile(useApi=useApi, inpLang=inpLang, outLang=outLang, inpText=inpText, )
     if (cacheFile != ''):
         if (os.path.exists(cacheFile)):
@@ -253,7 +253,7 @@ def qTranslator_fromCache(useApi='free', inpLang='ja', outLang='en', inpText=u'�
                 return False, ''
     return False, ''
 
-def qTranslator_toCache(useApi='free', inpLang='ja', outLang='en', inpText=u'こんにちわ', outText='Hello', ):
+def qTranslator_toCache(useApi='free', inpLang='ja', outLang='en', inpText='こんにちわ', outText='Hello', ):
     cacheFile = qTranslator_cacheFile(useApi=useApi, inpLang=inpLang, outLang=outLang, inpText=inpText, )
     if (cacheFile == ''):
         return False
@@ -273,7 +273,7 @@ def qTranslator_toCache(useApi='free', inpLang='ja', outLang='en', inpText=u'こ
 
 
 
-def qTranslator(useApi='free', inpLang='ja', outLang='en', inpText=u'こんにちわ', apiRecovery=True, ):
+def qTranslator(useApi='free', inpLang='ja', outLang='en', inpText='こんにちわ', apiRecovery=True, ):
     resText = ''
     resApi  = ''
 
@@ -1128,7 +1128,7 @@ def speech_batch(runMode, micDev,
 
 
         if (inpText != '') and (qLangInp == 'ja'):
-            inpText = inpText.replace(u'　', '')
+            inpText = inpText.replace('　', '')
             inpText = inpText.replace( ' ', '')
 
         if (inpText == ''):
@@ -1148,37 +1148,37 @@ def speech_batch(runMode, micDev,
                 if (len(inpText) <= 10):
                     try:
                         numText = qFunc.strkan2num(inpText)
-                        numText.replace(u'零', u'0')
+                        numText.replace('零', '0')
                         if (not numText.isdigit()):
                             numText = inpText
                     except Exception as e:
                         pass
                 if (numText != inpText):
-                    qLog2.log('info', '   ' + procId, 'Recognition  [' + inpText + u'] → [' + numText + ']', display=True)
+                    qLog2.log('info', '   ' + procId, 'Recognition  [' + inpText + '] → [' + numText + ']', display=True)
                     inpText = str(numText)
                 else:
                     if (runMode == 'number'):
                         numText = inpText
-                        numText = numText.replace(u'ゼロ', '0')
-                        numText = numText.replace(u'０',   '0')
-                        numText = numText.replace(u'１',   '1')
-                        numText = numText.replace(u'２',   '2')
-                        numText = numText.replace(u'３',   '3')
-                        numText = numText.replace(u'４',   '4')
-                        numText = numText.replace(u'５',   '5')
-                        numText = numText.replace(u'６',   '6')
-                        numText = numText.replace(u'７',   '7')
-                        numText = numText.replace(u'８',   '8')
-                        numText = numText.replace(u'９',   '9')
-                        numText = numText.replace(u'。', '')
-                        numText = numText.replace(u'．', '.')
-                        numText = numText.replace(u'　', '')
+                        numText = numText.replace('ゼロ', '0')
+                        numText = numText.replace('０',   '0')
+                        numText = numText.replace('１',   '1')
+                        numText = numText.replace('２',   '2')
+                        numText = numText.replace('３',   '3')
+                        numText = numText.replace('４',   '4')
+                        numText = numText.replace('５',   '5')
+                        numText = numText.replace('６',   '6')
+                        numText = numText.replace('７',   '7')
+                        numText = numText.replace('８',   '8')
+                        numText = numText.replace('９',   '9')
+                        numText = numText.replace('。', '')
+                        numText = numText.replace('．', '.')
+                        numText = numText.replace('　', '')
                         numText = numText.replace(' ', '')
                         numText = numText.replace(',', '')
                         if (numText[-1:] == '.'):
                             numText=numText[:-1]
                         if (numText != inpText and numText.isdigit()):
-                            qLog2.log('info', '   ' + procId, 'Recognition  [' + inpText + u'] → [' + numText + ']', display=True)
+                            qLog2.log('info', '   ' + procId, 'Recognition  [' + inpText + '] → [' + numText + ']', display=True)
                             inpText = str(numText)
 
 
@@ -1285,7 +1285,7 @@ def speech_batch(runMode, micDev,
 
                     if (trnRes != '' and trnRes != '!') and (runMode == 'number'):
                         numtxt = trnRes.lower()
-                        numtxt = numtxt.replace(u'０', '0')
+                        numtxt = numtxt.replace('０', '0')
                         numtxt = numtxt.replace('zero', '0')
                         numtxt = numtxt.replace('one', '1')
                         numtxt = numtxt.replace('two', '2')
@@ -1296,15 +1296,15 @@ def speech_batch(runMode, micDev,
                         numtxt = numtxt.replace('seven', '7')
                         numtxt = numtxt.replace('eight', '8')
                         numtxt = numtxt.replace('nine', '9')
-                        numtxt = numtxt.replace(u'。', '')
-                        numtxt = numtxt.replace(u'．', '.')
-                        numtxt = numtxt.replace(u'　', '')
+                        numtxt = numtxt.replace('。', '')
+                        numtxt = numtxt.replace('．', '.')
+                        numtxt = numtxt.replace('　', '')
                         numtxt = numtxt.replace(' ', '')
                         numtxt = numtxt.replace(',', '')
                         if (numtxt[-1:] == '.'):
                             numtxt=numtxt[:-1]
                         if (numtxt != trnRes and numtxt.isdigit()):
-                            qLog2.log('info', '   ' + procId, 'Translation  [' + trnRes + u'] → [' + numtxt + ']', display=True)
+                            qLog2.log('info', '   ' + procId, 'Translation  [' + trnRes + '] → [' + numtxt + ']', display=True)
                             trnRes = str(numtxt)
 
                     trnMulti.append({'lang':lang, 'text':trnRes, 'api':api,})

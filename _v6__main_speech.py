@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -96,7 +96,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -151,7 +151,7 @@ import speech_api_julius
 
 
 # debug
-runMode     = 'chat'
+runMode     = 'chatbot'
 
 qApiInp     = 'free'
 qApiTrn     = 'free'
@@ -402,7 +402,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「音声制御」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「音声制御」の機能が有効になりました。', 'wait':0, })
 
             if (controls_thread is not None) and (controls_switch != 'on'):
                 controls_thread.abort()
@@ -422,7 +422,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「マイク入力」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「マイク入力」の機能が有効になりました。', 'wait':0, })
 
             if (adintool_thread is not None) and (adintool_switch != 'on'):
                 adintool_thread.abort()
@@ -442,7 +442,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「音響補正」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「音響補正」の機能が有効になりました。', 'wait':0, })
 
             if (voice2wav_thread is not None) and (voice2wav_switch != 'on'):
                 voice2wav_thread.abort()
@@ -465,8 +465,8 @@ class main_speech:
                 speechs = []
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ＡＩ音声認識」の機能が有効になりました。', 'wait':0, })
-                    speechs.append({ 'text':u'「ＡＩ機械翻訳」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＡＩ音声認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＡＩ機械翻訳」の機能が有効になりました。', 'wait':0, })
 
             if (coreSTT_thread is not None) and (coreSTT_switch != 'on'):
                 coreSTT_thread.abort()
@@ -488,7 +488,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ＡＩ音声合成」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＡＩ音声合成」の機能が有効になりました。', 'wait':0, })
 
             if (coreTTS_thread is not None) and (coreTTS_switch != 'on'):
                 coreTTS_thread.abort()
@@ -508,7 +508,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「スピーカー出力」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「スピーカー出力」の機能が有効になりました。', 'wait':0, })
 
             if (playvoice_thread is not None) and (playvoice_switch != 'on'):
                 playvoice_thread.abort()
@@ -527,7 +527,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「ＪＵＬＩＵＳローカル音声認識」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「ＪＵＬＩＵＳローカル音声認識」の機能が有効になりました。', 'wait':0, })
 
             if (julius_thread is not None) and (julius_switch != 'on'):
                 julius_thread.abort()
@@ -547,7 +547,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「音声認識結果のテキスト連携」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「音声認識結果のテキスト連携」の機能が有効になりました。', 'wait':0, })
 
             if (sttreader_thread is not None) and (sttreader_switch != 'on'):
                 sttreader_thread.abort()
@@ -567,7 +567,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「機械翻訳結果のテキスト連携」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「機械翻訳結果のテキスト連携」の機能が有効になりました。', 'wait':0, })
 
             if (chatbot_thread is not None) and (chatbot_switch != 'on'):
                 chatbot_thread.abort()
@@ -586,7 +586,7 @@ class main_speech:
 
                 if (self.runMode == 'debug') \
                 or (self.runMode == 'live'):
-                    speechs.append({ 'text':u'「チャットＧＰＴとの会話」の機能が有効になりました。', 'wait':0, })
+                    speechs.append({ 'text':'「チャットＧＰＴとの会話」の機能が有効になりました。', 'wait':0, })
 
             if (chatbot_thread is not None) and (chatbot_switch != 'on'):
                 chatbot_thread.abort()
@@ -604,7 +604,7 @@ class main_speech:
                 or   (self.runMode == 'hud') \
                 or   (self.runMode == 'camera'):
                     speechs = []
-                    speechs.append({ 'text':u'「ハンズフリー機能」の準備が完了しました。', 'wait':0, })
+                    speechs.append({ 'text':'「ハンズフリー機能」の準備が完了しました。', 'wait':0, })
                     qRiKi.speech(id=self.proc_id, speechs=speechs, lang='', )
 
             # レディー設定
@@ -718,8 +718,8 @@ class main_speech:
                                         qFunc.statusSet(qRdy__s_fproc, True)
 
                                 # 終了操作
-                                if ((proc_text.find(u'システム') >=0) and (proc_text.find(u'終了') >=0)) \
-                                or  (proc_text == u'バルス'):
+                                if ((proc_text.find('システム') >=0) and (proc_text.find('終了') >=0)) \
+                                or  (proc_text == 'バルス'):
                                     qFunc.txtsWrite(qCtrl_control_kernel, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
                                     qFunc.txtsWrite(qCtrl_control_self, txts=['_end_'], encoding='utf-8', exclusive=True, mode='w', )
                                     break

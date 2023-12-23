@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -236,8 +236,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 
@@ -258,7 +258,7 @@ class SpeechAPI:
 
 
 
-    def translate(self, inpText=u'こんにちは', inpLang='ja-JP', outLang='en-US', ):
+    def translate(self, inpText='こんにちは', inpLang='ja-JP', outLang='en-US', ):
         res_text = ''
         res_api  = ''
         if (self.tra_client is None):
@@ -326,8 +326,8 @@ class SpeechAPI:
 
             if (res_text != ''):
                 res_text = str(res_text).strip()
-                while (res_text[-1:] == u'。') \
-                   or (res_text[-1:] == u'、') \
+                while (res_text[-1:] == '。') \
+                   or (res_text[-1:] == '、') \
                    or (res_text[-1:] == '.'):
                     res_text = res_text[:-1]
 
@@ -397,7 +397,7 @@ class SpeechAPI:
                 gend  = 'Male'
             elif (outLang == 'zh' or outLang == 'zh-CN'):
                 lang  = 'zh-CN'
-                voice = 'Zhiyu'
+                voice = 'Zhiy'
                 gend  = 'Female'
 
             if (voice != '') and (outText != '') and (outText != '!'):
@@ -439,7 +439,7 @@ if __name__ == '__main__':
 
         if (res1 == True) and (res2 == True) and (res3 == True):
 
-            text = u'今日は久しぶりにゆっくり休めます。'
+            text = '今日は久しぶりにゆっくり休めます。'
             file = 'temp_voice.mp3'
 
             res, api = awsAPI.vocalize(outText=text, outLang='ja', outFile=file)

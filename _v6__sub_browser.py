@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -93,7 +93,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -231,7 +231,7 @@ def html_narou_to_tts(abortQ=None, proc_id=None, base_url='', page_url='', html=
         print(capter_title.text)
         sub_title = soup.find('p', class_='novel_subtitle')
         print(sub_title.text)
-        txt = 'ja,' + u'タイトル'
+        txt = 'ja,' + 'タイトル'
         qRiKi.tts(id=proc_id, text=txt, idolSec=0, maxWait=0, )
         time.sleep(1.2)
         txt = 'ja,' + capter_title.text + ' ' + sub_title.text
@@ -255,15 +255,15 @@ def html_narou_to_tts(abortQ=None, proc_id=None, base_url='', page_url='', html=
             if (len(p_list) == 0):
                 break
             if (i == 1):
-                txt = 'ja,' + u'本文'
+                txt = 'ja,' + '本文'
                 qRiKi.tts(id=proc_id, text=txt, idolSec=0, maxWait=0, )
                 time.sleep(1.2)
             for p in p_list:
                 txt = p.text
                 print(txt)
-                txt = txt.replace(u'「', '')
-                txt = txt.replace(u'」', '')
-                txt = txt.replace(u'…', ' ')
+                txt = txt.replace('「', '')
+                txt = txt.replace('」', '')
+                txt = txt.replace('…', ' ')
                 txt = 'ja,' + txt
                 qRiKi.tts(id=proc_id, text=txt, idolSec=0, maxWait=0, )
                 time.sleep(1.2)
@@ -540,7 +540,7 @@ class main_browser:
     # 処理
     def sub_proc(self, proc_text, ):
 
-        if (proc_text.find(u'リセット') >=0):
+        if (proc_text.find('リセット') >=0):
 
             # 停止
             if (self.browser_id is not None):
@@ -548,12 +548,12 @@ class main_browser:
                 self.sub_stop('_stop_', )
 
         elif (proc_text.lower() == '_stop_') \
-          or (proc_text.find(u'WEB') >=0)      and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'WEB') >=0)      and (proc_text.find(u'終了') >=0) \
-          or (proc_text.find(u'ウェブ') >=0)   and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'ウェブ') >=0)   and (proc_text.find(u'終了') >=0) \
-          or (proc_text.find(u'ブラウザ') >=0) and (proc_text.find(u'停止') >=0) \
-          or (proc_text.find(u'ブラウザ') >=0) and (proc_text.find(u'終了') >=0):
+          or (proc_text.find('WEB') >=0)      and (proc_text.find('停止') >=0) \
+          or (proc_text.find('WEB') >=0)      and (proc_text.find('終了') >=0) \
+          or (proc_text.find('ウェブ') >=0)   and (proc_text.find('停止') >=0) \
+          or (proc_text.find('ウェブ') >=0)   and (proc_text.find('終了') >=0) \
+          or (proc_text.find('ブラウザ') >=0) and (proc_text.find('停止') >=0) \
+          or (proc_text.find('ブラウザ') >=0) and (proc_text.find('終了') >=0):
 
             # 停止
             if (self.browser_id is not None):
@@ -561,9 +561,9 @@ class main_browser:
                 self.sub_stop('_stop_', )
 
         elif (proc_text.lower() == '_start_') \
-          or (proc_text.find(u'WEB') >=0)     and (proc_text.find(u'開始') >=0) \
-          or (proc_text.find(u'ウェブ') >=0)   and (proc_text.find(u'開始') >=0) \
-          or (proc_text.find(u'ブラウザ') >=0) and (proc_text.find(u'開始') >=0):
+          or (proc_text.find('WEB') >=0)     and (proc_text.find('開始') >=0) \
+          or (proc_text.find('ウェブ') >=0)   and (proc_text.find('開始') >=0) \
+          or (proc_text.find('ブラウザ') >=0) and (proc_text.find('開始') >=0):
 
             # 開始
             self.sub_start('_start_', )
@@ -638,7 +638,7 @@ class main_browser:
         elif (proc_text[:4] == 'http'):
             url = proc_text
             #self.browser_id.get(url)
-        elif (proc_text == u'なろう') or (proc_text == u'本好き'):
+        elif (proc_text == 'なろう') or (proc_text == '本好き'):
             url = self.narou_home     #'https://syosetu.com/'
             #self.browser_id.get(url)
 
@@ -895,9 +895,9 @@ if __name__ == '__main__':
                         time.sleep(30.00)
                         qFunc.txtsWrite(qCtrl_control_self ,txts=['http://13.78.51.61/snkMobile/'], encoding='utf-8', exclusive=True, mode='w', )
                         time.sleep(30.00)
-                        qFunc.txtsWrite(qCtrl_control_self ,txts=[u'本好き'], encoding='utf-8', exclusive=True, mode='w', )
+                        qFunc.txtsWrite(qCtrl_control_self ,txts=['本好き'], encoding='utf-8', exclusive=True, mode='w', )
                         time.sleep(10.00)
-                        qFunc.txtsWrite(qCtrl_control_self ,txts=[u'姫路城'], encoding='utf-8', exclusive=True, mode='w', )
+                        qFunc.txtsWrite(qCtrl_control_self ,txts=['姫路城'], encoding='utf-8', exclusive=True, mode='w', )
 
                 # テスト終了
                 if  ((time.time() - main_start) > 180):

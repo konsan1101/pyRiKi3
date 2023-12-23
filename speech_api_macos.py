@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -87,7 +87,7 @@ class SpeechAPI:
                 voice = 'Federica'
             elif (outLang == 'pt'):
                 voice = 'Joana'
-            elif (outLang == 'ru'):
+            elif (outLang == 'r'):
                 voice = 'Milena'
             elif (outLang == 'tr'):
                 voice = 'Yelda'

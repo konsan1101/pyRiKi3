@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -75,7 +75,7 @@ qPath_d_movie    = qRiKi.getValue('qPath_d_movie'    )
 qPath_d_telop    = qRiKi.getValue('qPath_d_telop'    )
 qPath_d_upload   = qRiKi.getValue('qPath_d_upload'   )
 
-qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cpu'    )
+qBusy_dev_cpu    = qRiKi.getValue('qBusy_dev_cp'    )
 qBusy_dev_com    = qRiKi.getValue('qBusy_dev_com'    )
 qBusy_dev_mic    = qRiKi.getValue('qBusy_dev_mic'    )
 qBusy_dev_spk    = qRiKi.getValue('qBusy_dev_spk'    )
@@ -453,7 +453,7 @@ if __name__ == '__main__':
     txt2img_thread = proc_txt2img('txt2img', '0', )
     txt2img_thread.begin()
 
-    txt2img_thread.put(['[txts]', [u'おはようございます']])
+    txt2img_thread.put(['[txts]', ['おはようございます']])
     resdata = txt2img_thread.checkGet()
     if (resdata[0] == '[txts_img]'):
         img = resdata[1].copy()
@@ -464,7 +464,7 @@ if __name__ == '__main__':
 
     txt2img_thread.put(['flag_blackwhite', 'white'])
 
-    txt2img_thread.put(['[txts]', [u'こんにちは', u'はじめまして']])
+    txt2img_thread.put(['[txts]', ['こんにちは', 'はじめまして']])
     resdata = txt2img_thread.checkGet()
     if (resdata[0] == '[txts_img]'):
         img = resdata[1].copy()

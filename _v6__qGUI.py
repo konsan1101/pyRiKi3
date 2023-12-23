@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ------------------------------------------------
-# COPYRIGHT (C) 2014-2023 Mitsuo KONDOU.
+# COPYRIGHT (C) 2014-2024 Mitsuo KONDOU.
 # This software is released under the MIT License.
 # https://github.com/konsan1101
 # Thank you for keeping the rules.
@@ -509,10 +509,10 @@ class qGUI_class:
         if (os.name != 'nt'):
             return False
 
-        winTitle  = u'無題 - メモ帳'
+        winTitle  = '無題 - メモ帳'
         parent_handle = ctypes.windll.user32.FindWindowW(0, winTitle)
         if (parent_handle == 0):
-            winTitle  = u'*無題 - メモ帳'
+            winTitle  = '*無題 - メモ帳'
             parent_handle = ctypes.windll.user32.FindWindowW(0, winTitle)
             if (parent_handle == 0):
                 return False
@@ -583,10 +583,10 @@ if __name__ == '__main__':
     x,y = qGUI.getResolution('full')
     print('getResolution x,y = ', x, y, )
 
-    qGUI.notePad(txt=u'開始')
-    ##qGUI.sendKey(txt=u'日本語')
-    ##qGUI.sendKey(txt=u'abcdefg',lf=False)
-    qGUI.notePad(txt=u'終了')
+    qGUI.notePad(txt='開始')
+    ##qGUI.sendKey(txt='日本語')
+    ##qGUI.sendKey(txt='abcdefg',lf=False)
+    qGUI.notePad(txt='終了')
 
 
 
